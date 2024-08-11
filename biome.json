@@ -12,7 +12,8 @@
     "rules": {
       "recommended": true,
       "style": {
-        "useSelfClosingElements": "warn"
+        "useSelfClosingElements": "warn",
+        "noNonNullAssertion": "off"
       }
     }
   }
