@@ -42,11 +42,31 @@ export const point_header = style({
 });
 
 export const point = style({
-  // height: "200px",
   fontSize: "200px",
   lineHeight: "200px",
   fontWeight: vars.font.medium,
   margin: "0px",
+  marginTop: "-20px",
+  textAlign: "right",
+});
+
+export const button_container = style({
+  display: "flex",
+  justifyContent: "space-between",
+});
+
+export const button = style({
+  height: "44px",
+  width: "160px",
+  padding: "0px",
+  borderRadius: "56px",
+  border: "2px solid",
+  borderBottom: "6px solid",
+  backgroundColor: vars.color.white,
+  borderColor: vars.color.blue,
+  fontSize: "20px",
+  fontWeight: vars.font.semibold,
+  boxSizing: "content-box",
 });
 
 export const status_header = style({
@@ -92,4 +112,28 @@ export const weather_inner_container = style({
   marginBottom: "3px",
   paddingTop: "5px",
   paddingBottom: "5px",
+});
+
+export const hint_container = style({
+  width: "750px",
+  margin: "auto",
+});
+
+export const hint_header = style({
+  margin: "0px",
+  fontWeight: vars.font.semibold,
+  fontSize: "20px",
+  color: vars.color.blue,
+});
+
+export const hint = style({
+  width: "100%",
+  height: "60px",
+  margin: "0px",
+  fontWeight: vars.font.medium,
+  fontSize: "20px",
+  lineHeight: "60px",
+  borderTop: "2px solid",
+  borderBottom: "2px solid",
+  borderColor: vars.color.blue,
 });
