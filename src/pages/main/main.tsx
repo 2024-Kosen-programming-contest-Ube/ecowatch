@@ -1,14 +1,23 @@
 import { Link } from "react-router-dom";
 import * as css from "./main.css";
-import weatherSunnyLogo from "@/assets/weather/sunny.svg";
+import { useWeather } from "@/hooks/hookWeather";
+import { useEffect, useState } from "react";
 
 function MainPage() {
   const point = 500;
-  const hint = "エアコンを2時間使わないことで成人の木が一日で吸収する稜のCO2を削減できます";
+  // const hint = "エアコンを2時間使わないことで成人の木が一日で吸収する稜のCO2を削減できます";
   // const temperature = 50;
   // const humidity = 50;
   // const isPeople = true;
   // const lux = 1;
+  const [hint, setHint] = useState("エアコンを2時間使わないことで成人の木が一日で吸収する稜のCO2を削減できます");
+  const [weatherIcon, weatherError] = useWeather();
+
+  useEffect(() => {
+    if (weatherError) {
+      setHint(weatherError);
+    }
+  }, [weatherError]);
 
   function Button({ href, text }: { href: string; text: string }) {
     return (
@@ -40,7 +49,7 @@ function MainPage() {
             <h1 className={css.status_header}>天気/不快指数</h1>
             <div className={css.status_outer_container}>
               <div className={css.weather_inner_container}>
-                <img src={weatherSunnyLogo} alt="sunny logo" className={css.weather_icon} />
+                <img src={weatherIcon} alt="weather icon" className={css.weather_icon} />
               </div>
             </div>
           </div>
