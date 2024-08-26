@@ -37,8 +37,8 @@ function MainPage() {
             <h1 className={css.point_header}>本日のCO2削減ポイント</h1>
             <p className={css.point}>{point}</p>
             <div className={css.button_container}>
-              <Button href="" text="出席確認" />
-              <Button href="" text="メニュー" />
+              <Button href="/attend" text="出席確認" />
+              <Button href="/" text="メニュー" />
             </div>
           </div>
           <div className={css.container_top_right}>

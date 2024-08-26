@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./styles/global.css";
 import MenuPage from "./pages/menu/menu.tsx";
 import MainPage from "./pages/main/main.tsx";
+import AttendPage from "./pages/attend/attend.tsx";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
@@ -17,6 +18,7 @@ createRoot(document.getElementById("root")!).render(
         <Route path="/">
           <Route index element={<MenuPage />} />
           <Route path="main" element={<MainPage />} />
+          <Route path="attend" element={<AttendPage />} />
         </Route>
       </Routes>
     </BrowserRouter>
