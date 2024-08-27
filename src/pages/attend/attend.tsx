@@ -18,6 +18,9 @@ function AttendPage() {
           .json()
           .then((data) => {
             console.log(data);
+            if (data.attend) {
+              setNum(String(data.attend));
+            }
           })
           .catch((err) => {
             console.error(err);
@@ -29,7 +32,7 @@ function AttendPage() {
   }, []);
 
   function submit() {
-    postJson("api/classroom/regist_attendance", JSON.stringify({ attendees: num }))
+    postJson("api/classroom/regist_attendance", JSON.stringify({ attendees: Number(num) }))
       .then(() => {
         navigate("/main");
       })
