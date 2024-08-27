@@ -3,7 +3,7 @@ import * as css from "./menu.css";
 import * as css_button from "../../styles/buttons.css";
 
 function MenuPage() {
-  function Button({ href, text }: { href: string; text: string }) {
+  function LinkButton({ href, text }: { href: string; text: string }) {
     return (
       <Link to={href}>
         <button type="button" className={css_button.button_white}>
@@ -17,8 +17,9 @@ function MenuPage() {
     <div className={css.container}>
       <div className={css.top_container}></div>
       <div className={css.button_container}>
-        <Button href="/main" text="メイン画面" />
-        <Button href="/setting" text="設定" />
+        <LinkButton href="/login" text="ログイン" />
+        <LinkButton href="/main" text="メイン画面" />
+        <LinkButton href="/setting" text="設定" />
       </div>
     </div>
   );
