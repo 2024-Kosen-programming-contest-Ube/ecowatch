@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import * as css from "./select.css";
+import * as css from "./inputSelect.css";
 
 export function useInputSelect(list: { key: string; value: string }[]): [JSX.Element, string | undefined] {
   const [selected, setSelected] = useState(list[0] ? list[0].key : undefined);
