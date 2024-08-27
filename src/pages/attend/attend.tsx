@@ -2,34 +2,20 @@ import { useEffect, useState } from "react";
 import * as css from "./attend.css";
 import { useNavigate } from "react-router-dom";
 import { post_json as postJson } from "@/utils";
+import { useDayStatus } from "@/hooks/hookDayStatus";
 
 function AttendPage() {
   const navigate = useNavigate();
+  const previousStatus = useDayStatus();
   const [num, setNum] = useState("");
 
   useEffect(() => {
-    fetch("/api/classroom/get_now_status")
-      .then((res) => {
-        if (!res.ok) {
-          console.error(res.statusText);
-          return;
-        }
-        res
-          .json()
-          .then((data) => {
-            console.log(data);
-            if (data.attend) {
-              setNum(String(data.attend));
-            }
-          })
-          .catch((err) => {
-            console.error(err);
-          });
-      })
-      .catch((err) => {
-        console.error(err);
-      });
-  }, []);
+    if (previousStatus?.attend) {
+      setNum(String(previousStatus?.attend));
+    } else {
+      setNum("");
+    }
+  }, [previousStatus]);
 
   function submit() {
     postJson("api/classroom/regist_attendance", JSON.stringify({ attendees: Number(num) }))
