@@ -19,9 +19,9 @@ export const wrapper = style({
 
 export const select = style({
   appearance: "none",
-  minWidth: "210px",
+  width: "210px",
   height: "48px",
-  padding: ".4em calc(.8em + 30px) .4em .8em",
+  padding: "6px 40px 6px 12px",
   border: "2px solid",
   borderColor: vars.color.blue,
   borderRadius: "12px",
