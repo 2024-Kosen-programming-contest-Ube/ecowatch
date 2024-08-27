@@ -2,9 +2,9 @@ import { Link } from "react-router-dom";
 import * as css from "./main.css";
 import { useWeather } from "@/hooks/hookWeather";
 import { useEffect, useState } from "react";
+import { useDayStatus } from "@/hooks/hookDayStatus";
 
 function MainPage() {
-  const point = 500;
   // const hint = "エアコンを2時間使わないことで成人の木が一日で吸収する稜のCO2を削減できます";
   // const temperature = 50;
   // const humidity = 50;
@@ -12,6 +12,7 @@ function MainPage() {
   // const lux = 1;
   const [hint, setHint] = useState("エアコンを2時間使わないことで成人の木が一日で吸収する稜のCO2を削減できます");
   const [weatherIcon, weatherError] = useWeather();
+  const dayStatus = useDayStatus();
 
   useEffect(() => {
     if (weatherError) {
@@ -35,7 +36,7 @@ function MainPage() {
         <div className={css.container_top}>
           <div className={css.container_top_left}>
             <h1 className={css.point_header}>本日のCO2削減ポイント</h1>
-            <p className={css.point}>{point}</p>
+            <p className={css.point}>{dayStatus?.point ?? 0}</p>
             <div className={css.button_container}>
               <Button href="/attend" text="出席確認" />
               <Button href="/" text="メニュー" />
