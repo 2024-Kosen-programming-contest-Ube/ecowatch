@@ -10,8 +10,8 @@ function AttendPage() {
   const [num, setNum] = useState("");
 
   useEffect(() => {
-    if (previousStatus?.attend) {
-      setNum(String(previousStatus?.attend));
+    if (previousStatus?.value?.attend) {
+      setNum(String(previousStatus.value.attend));
     } else {
       setNum("");
     }
