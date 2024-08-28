@@ -63,8 +63,8 @@ const weatherCode: { [key: number]: Weather } = {
   99: Weather.THUNDERSTORM, // 雹を伴う雷雨
 };
 
-export function useWeather(): [string, string | null] {
-  const [weather, SetWeather] = useState<string>(weatherThunderstormIcon);
+export function useWeather(): [string | null, string | null] {
+  const [weather, SetWeather] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
