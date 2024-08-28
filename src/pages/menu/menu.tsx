@@ -2,6 +2,8 @@ import { Link } from "react-router-dom";
 import * as css from "./menu.css";
 import * as css_button from "../../styles/buttons.css";
 import { useDayStatus } from "@/hooks/hookDayStatus";
+import { Suspense } from "react";
+import { ErrorBoundary } from "react-error-boundary";
 
 function MenuPage() {
   function LinkButton({ href, text }: { href: string; text: string }) {
@@ -16,6 +18,7 @@ function MenuPage() {
 
   function MainLoginButton() {
     const status = useDayStatus();
+
     if (status.unauthorized) {
       return <LinkButton href="/login" text="ログイン" />;
     }
@@ -29,7 +32,11 @@ function MenuPage() {
     <div className={css.container}>
       <div className={css.top_container}></div>
       <div className={css.button_container}>
-        <MainLoginButton />
+        <ErrorBoundary fallback={<LinkButton href="/" text="error" />}>
+          <Suspense fallback={<LinkButton href="/" text="" />}>
+            <MainLoginButton />
+          </Suspense>
+        </ErrorBoundary>
         <LinkButton href="/setting" text="設定" />
       </div>
     </div>
