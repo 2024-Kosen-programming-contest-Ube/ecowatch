@@ -37,6 +37,9 @@ export function useDayStatus(): FetchedData<DayStatus> {
     throw Error("Unexpected");
   }
   const data = dayStatusJsonFetcher?.resolve();
+  if (data.attend === undefined && data.class_id === undefined && data.date === undefined && data.point === undefined) {
+    return { value: null, unauthorized: false, error: null };
+  }
   if (!data.attend || !data.class_id || !data.date || data.point == null) {
     throw Error("Invalid day status");
   }

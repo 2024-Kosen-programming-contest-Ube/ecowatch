@@ -22,7 +22,7 @@ function MenuPage() {
     if (status.unauthorized) {
       return <LinkButton href="/login" text="ログイン" />;
     }
-    if (status.value) {
+    if (status.unauthorized === false && !status.error) {
       return <LinkButton href="/main" text="メイン画面" />;
     }
     <LinkButton href="/main" text="" />;
