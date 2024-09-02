@@ -1,11 +1,9 @@
 // import { useSelect } from "@/components/select";
 import * as css from "./login.css";
 import { useEffect, useMemo, useState } from "react";
-import { useInputSelect } from "@/components/inputSelect";
-import { useInputText } from "@/components/inputText";
-import { Submit } from "@/components/submit";
-import { post_json } from "@/utils";
 import { useNavigate } from "react-router-dom";
+import { Submit, useInputSelect, useInputText } from "@ecowatch/ui";
+import { postJson } from "@ecowatch/utils";
 
 type AllClassrooms = {
   schools: { id: string; name: string }[];
@@ -97,7 +95,7 @@ function LoginPage() {
     }
     const data = { class_id: classroom.id, password: password };
     const data_json = JSON.stringify(data);
-    post_json("/api/classroom/login", data_json)
+    postJson("/api/classroom/login", data_json)
       .then((res) => {
         if (res.ok) {
           navigate("/main");

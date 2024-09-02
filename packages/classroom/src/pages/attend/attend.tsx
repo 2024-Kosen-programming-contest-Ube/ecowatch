@@ -1,8 +1,8 @@
 import { startTransition, Suspense, useState } from "react";
 import * as css from "./attend.css";
 import { useNavigate } from "react-router-dom";
-import { post_json as postJson } from "@/utils";
 import { useDayStatus } from "@/hooks/hookDayStatus";
+import { postJson } from "@ecowatch/utils";
 
 function AttendInterface() {
   const navigate = useNavigate();

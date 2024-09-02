@@ -1,10 +1,10 @@
+import { theme } from "@ecowatch/ui";
 import { style } from "@vanilla-extract/css";
-import { vars } from "../../styles/theme.css";
 
 export const container = style({
-  width: vars.window.width,
-  height: vars.window.height,
-  backgroundColor: vars.color.blue,
+  width: theme.window.width,
+  height: theme.window.height,
+  backgroundColor: theme.color.blue,
   overflow: "hidden",
   // paddingBottom: "180px",
 });
@@ -18,9 +18,9 @@ export const center_container = style({
 export const header = style({
   width: "100%",
   margin: "0px",
-  fontWeight: vars.font.semibold,
+  fontWeight: theme.font.semibold,
   fontSize: "24px",
-  color: vars.color.white,
+  color: theme.color.white,
   letterSpacing: "2px",
 });
 
@@ -32,8 +32,8 @@ export const left_container = style({});
 
 export const display_header = style({
   margin: "0px",
-  color: vars.color.white,
-  fontWeight: vars.font.semibold,
+  color: theme.color.white,
+  fontWeight: theme.font.semibold,
   fontSize: "40px",
 });
 
@@ -46,8 +46,8 @@ export const diaplay = style({
   width: "160px",
   height: "64px",
   borderRadius: "16px",
-  backgroundColor: vars.color.white,
-  fontWeight: vars.font.semibold,
+  backgroundColor: theme.color.white,
+  fontWeight: theme.font.semibold,
   fontSize: "40px",
   textAlign: "center",
 });
@@ -56,9 +56,9 @@ export const diaplay_prefix = style({
   height: "54px",
   margin: "0px",
   marginTop: "12px",
-  fontWeight: vars.font.semibold,
+  fontWeight: theme.font.semibold,
   fontSize: "40px",
-  color: vars.color.white,
+  color: theme.color.white,
 });
 
 export const button_container = style({
@@ -79,7 +79,7 @@ export const button = style({
   padding: "0px",
   borderRadius: "30px",
   border: "0px",
-  backgroundColor: vars.color.white,
-  fontWeight: vars.font.medium,
+  backgroundColor: theme.color.white,
+  fontWeight: theme.font.medium,
   fontSize: "30px",
 });

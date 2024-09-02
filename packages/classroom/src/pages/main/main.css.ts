@@ -1,18 +1,18 @@
+import { theme } from "@ecowatch/ui";
 import { style } from "@vanilla-extract/css";
 import { calc } from "@vanilla-extract/css-utils";
-import { vars } from "../../styles/theme.css";
 
 export const background = style({
-  width: calc.subtract(vars.window.width, "20px"),
-  height: calc.subtract(vars.window.height, "20px"),
+  width: calc.subtract(theme.window.width, "20px"),
+  height: calc.subtract(theme.window.height, "20px"),
   padding: "10px",
-  backgroundColor: vars.color.blue, // TODO: Change color to suit status
+  backgroundColor: theme.color.blue, // TODO: Change color to suit status
 });
 
 export const container = style({
-  width: calc.subtract(vars.window.width, "20px"),
-  height: calc.subtract(vars.window.height, "20px"),
-  backgroundColor: vars.color.white,
+  width: calc.subtract(theme.window.width, "20px"),
+  height: calc.subtract(theme.window.height, "20px"),
+  backgroundColor: theme.color.white,
   borderRadius: "16px",
 });
 
@@ -35,8 +35,8 @@ export const point_header = style({
   height: "41px",
   marginTop: "0px",
   marginBottom: "0px",
-  color: vars.color.blue,
-  fontWeight: vars.font.semibold,
+  color: theme.color.blue,
+  fontWeight: theme.font.semibold,
   fontSize: "30px",
   textAlign: "center",
 });
@@ -44,7 +44,7 @@ export const point_header = style({
 export const point = style({
   fontSize: "200px",
   lineHeight: "200px",
-  fontWeight: vars.font.medium,
+  fontWeight: theme.font.medium,
   margin: "0px",
   marginTop: "-20px",
   textAlign: "right",
@@ -62,16 +62,16 @@ export const button = style({
   borderRadius: "56px",
   border: "2px solid",
   borderBottom: "6px solid",
-  backgroundColor: vars.color.white,
-  borderColor: vars.color.blue,
+  backgroundColor: theme.color.white,
+  borderColor: theme.color.blue,
   fontSize: "20px",
-  fontWeight: vars.font.semibold,
+  fontWeight: theme.font.semibold,
   boxSizing: "content-box",
 });
 
 export const status_header = style({
-  color: vars.color.blue,
-  fontWeight: vars.font.semibold,
+  color: theme.color.blue,
+  fontWeight: theme.font.semibold,
   fontSize: "16px",
   margin: "0px",
 });
@@ -81,7 +81,7 @@ export const status_outer_container = style({
   height: "max-content",
   borderTop: "3px solid",
   borderBottom: "3px solid",
-  borderColor: vars.color.blue, // TODO: Change color to suit status
+  borderColor: theme.color.blue, // TODO: Change color to suit status
 });
 
 export const temperature_outer_container = style([status_outer_container, { marginBottom: "5px" }]);
@@ -91,7 +91,7 @@ export const temperature_inner_container = style({
   height: "100px",
   borderTop: "3px dotted",
   borderBottom: "3px dotted",
-  borderColor: vars.color.blue, // TODO: Change color to suit status
+  borderColor: theme.color.blue, // TODO: Change color to suit status
   marginTop: "3px",
   marginBottom: "3px",
 });
@@ -107,7 +107,7 @@ export const weather_inner_container = style({
   height: "90px",
   borderTop: "3px dotted",
   borderBottom: "3px dotted",
-  borderColor: vars.color.blue, // TODO: Change color to suit status
+  borderColor: theme.color.blue, // TODO: Change color to suit status
   marginTop: "3px",
   marginBottom: "3px",
   paddingTop: "5px",
@@ -121,19 +121,19 @@ export const hint_container = style({
 
 export const hint_header = style({
   margin: "0px",
-  fontWeight: vars.font.semibold,
+  fontWeight: theme.font.semibold,
   fontSize: "20px",
-  color: vars.color.blue,
+  color: theme.color.blue,
 });
 
 export const hint = style({
   width: "100%",
   height: "60px",
   margin: "0px",
-  fontWeight: vars.font.medium,
+  fontWeight: theme.font.medium,
   fontSize: "20px",
   lineHeight: "60px",
   borderTop: "2px solid",
   borderBottom: "2px solid",
-  borderColor: vars.color.blue,
+  borderColor: theme.color.blue,
 });

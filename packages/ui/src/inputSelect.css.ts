@@ -1,5 +1,5 @@
 import { style } from "@vanilla-extract/css";
-import { vars } from "@/styles/theme.css";
+import { theme } from "./theme.css";
 
 export const wrapper = style({
   display: "inline-flex",
@@ -10,7 +10,7 @@ export const wrapper = style({
     right: "15px",
     width: "10px",
     height: "7px",
-    backgroundColor: vars.color.blue,
+    backgroundColor: theme.color.blue,
     clipPath: "polygon(0 0, 100% 0, 50% 100%)",
     content: "",
     pointerEvents: "none",
@@ -23,11 +23,11 @@ export const select = style({
   height: "48px",
   padding: "6px 40px 6px 12px",
   border: "2px solid",
-  borderColor: vars.color.blue,
+  borderColor: theme.color.blue,
   borderRadius: "12px",
   outline: "0",
-  backgroundColor: vars.color.white,
-  fontWeight: vars.font.medium,
+  backgroundColor: theme.color.white,
+  fontWeight: theme.font.medium,
   fontSize: "16px",
   cursor: "pointer",
 });

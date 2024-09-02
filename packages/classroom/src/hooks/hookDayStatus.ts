@@ -1,5 +1,4 @@
-import type { FetchedData } from "@/utils/fetchedData";
-import { type Resolve, resolver } from "@/utils/resolver";
+import { type FetchedData, type Resolve, resolver } from "@ecowatch/utils";
 import { useEffect } from "react";
 
 export type DayStatus = {

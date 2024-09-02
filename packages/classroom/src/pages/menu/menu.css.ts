@@ -1,10 +1,10 @@
+import { theme } from "@ecowatch/ui";
 import { style } from "@vanilla-extract/css";
-import { vars } from "../../styles/theme.css";
 
 export const container = style({
-  width: vars.window.width,
-  height: vars.window.height,
-  backgroundColor: vars.color.blue,
+  width: theme.window.width,
+  height: theme.window.height,
+  backgroundColor: theme.color.blue,
 });
 
 export const top_container = style({

@@ -1,4 +1,4 @@
-export function post_json(input: RequestInfo | URL, json: string, header?: HeadersInit) {
+export function postJson(input: RequestInfo | URL, json: string, header?: HeadersInit) {
   const headers = {
     "Content-Type": "application/json",
     ...header,

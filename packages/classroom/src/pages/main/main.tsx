@@ -12,7 +12,6 @@ function MainPage() {
   // const lux = 1;
   const [hint, setHint] = useState("エアコンを2時間使わないことで成人の木が一日で吸収する稜のCO2を削減できます");
   const [weatherIcon, weatherError] = useWeather();
-
   useEffect(() => {
     if (weatherError) {
       setHint(weatherError);

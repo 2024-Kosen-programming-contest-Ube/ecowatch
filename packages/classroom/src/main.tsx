@@ -1,7 +1,7 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import "./styles/global.css";
+import "@ecowatch/ui/src/global.css.ts";
 import MenuPage from "./pages/menu/menu.tsx";
 import MainPage from "./pages/main/main.tsx";
 import AttendPage from "./pages/attend/attend.tsx";
