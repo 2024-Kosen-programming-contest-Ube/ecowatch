@@ -24,7 +24,7 @@ function LoginPage() {
     );
   }, [allClassrooms]);
 
-  const [inputSelectSchool, selectedSchool] = useInputSelect(schoolOptions);
+  const [InputSelectSchool, selectedSchool] = useInputSelect(schoolOptions);
 
   const gradeOptions = useMemo(() => {
     return [
@@ -43,7 +43,7 @@ function LoginPage() {
     });
   }, [allClassrooms, selectedSchool]);
 
-  const [inputSelectGrade, selectedGrade] = useInputSelect(gradeOptions);
+  const [InputSelectGrade, selectedGrade] = useInputSelect(gradeOptions);
 
   const nameOptions = useMemo(() => {
     return (
@@ -58,9 +58,9 @@ function LoginPage() {
     );
   }, [allClassrooms, selectedSchool, selectedGrade]);
 
-  const [inputSelectName, selectedName] = useInputSelect(nameOptions);
+  const [InputSelectName, selectedName] = useInputSelect(nameOptions);
 
-  const [inputPassword, password] = useInputText();
+  const [InputPassword, password] = useInputText();
 
   useEffect(() => {
     fetch("/api/classroom/get_all")
@@ -112,22 +112,10 @@ function LoginPage() {
     <div className={css.container}>
       <div className={css.header} />
       <div className={css.input_container}>
-        <div className={css.input_row}>
-          <label className={css.label}>学校名</label>
-          {inputSelectSchool}
-        </div>
-        <div className={css.input_row}>
-          <label className={css.label}>学年</label>
-          {inputSelectGrade}
-        </div>
-        <div className={css.input_row}>
-          <label className={css.label}>クラス</label>
-          {inputSelectName}
-        </div>
-        <div className={css.input_row}>
-          <label className={css.label}>パスワード</label>
-          {inputPassword}
-        </div>
+        <InputSelectSchool label="学校名" />
+        <InputSelectGrade label="学年" />
+        <InputSelectName label="クラス" />
+        <InputPassword label="パスワード" />
         <Submit onClick={submit}>ログイン</Submit>
       </div>
     </div>
