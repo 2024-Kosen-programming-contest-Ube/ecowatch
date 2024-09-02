@@ -15,10 +15,10 @@ jobs:
       - name: Install dependencies
         run: npm install
       - name: Build
-        run: npm run build
+        run: npm -w classroom run build
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: "ecowatch"
-          path: ${{ github.workspace }}/dist/*
+          name: "ecowatch_classroom"
+          path: ${{ github.workspace }}/packages/classroom/dist/*
