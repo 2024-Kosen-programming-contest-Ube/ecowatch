@@ -6,13 +6,13 @@ import MenuPage from "./pages/menu/menu.tsx";
 import MainPage from "./pages/main/main.tsx";
 import AttendPage from "./pages/attend/attend.tsx";
 import LoginPage from "./pages/login/login.tsx";
+import { HeadFont, HeadIcon } from "@ecowatch/ui";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <head>
-      <link rel="preconnect" href="https://fonts.googleapis.com" />
-      <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-      <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&display=swap" rel="stylesheet" />
+      <HeadFont />
+      <HeadIcon />
     </head>
     <BrowserRouter>
       <Routes>
