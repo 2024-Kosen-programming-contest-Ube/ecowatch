@@ -8,6 +8,8 @@
   "packageManager": "pnpm@9.9.0",
   "scripts": {
     "classroom": "pnpm -F classroom",
+    "student": "pnpm -F student",
+    "teacher": "pnpm -F teacher",
     "ui": "pnpm -F ui"
   },
   "devDependencies": {

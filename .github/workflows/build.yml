@@ -21,10 +21,22 @@ jobs:
         run: pnpm install
 
       - name: Build
-        run: pnpm classroom run build
+        run: pnpm -r -F classroom -F student -F teacher run build
 
-      - name: Upload artifact
+      - name: Upload classroom artifact
         uses: actions/upload-artifact@v4
         with:
           name: "ecowatch_classroom"
           path: ${{ github.workspace }}/packages/classroom/dist/*
+
+      - name: Upload student artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: "ecowatch_student"
+          path: ${{ github.workspace }}/packages/student/dist/*
+
+      - name: Upload teacher artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: "ecowatch_teacher"
+          path: ${{ github.workspace }}/packages/teacher/dist/*
