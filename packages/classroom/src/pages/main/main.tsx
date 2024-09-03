@@ -2,6 +2,26 @@ import { Link } from "react-router-dom";
 import * as css from "./main.css";
 import { useWeather } from "@/hooks/hookWeather";
 import { useEffect, useState } from "react";
+import { useHint } from "@/hooks/hookHint";
+
+const TemperatureHumidity = ({ temperature, humidity }: { temperature: number; humidity: number }) => {
+  const decimal = Math.trunc((Math.abs(temperature) - Math.trunc(Math.abs(temperature))) * 10);
+  return (
+    <div className={css.temperature_humidity}>
+      <p className={css.temperature_humidity_integer}>{Math.trunc(temperature)}</p>
+      <div>
+        <p className={css.temperature_humidity_symbol}>℃</p>
+        <p className={css.temperature_humidity_decimal}>.{decimal}</p>
+      </div>
+      <p className={css.temperature_humidity_integer}>{Math.trunc(humidity)}</p>
+      <p className={css.temperature_humidity_symbol}>%</p>
+    </div>
+  );
+};
+
+const DiscomfortIndex = ({ temperature, humidity }: { temperature: number; humidity: number }) => {
+  return <p className={css.discomfort_index}>{Math.trunc(0.81 * temperature + 0.01 * humidity * (0.99 * temperature - 14.3) + 46.3)}</p>;
+};
 
 function MainPage({
   point,
@@ -14,20 +34,13 @@ function MainPage({
   humidity: number;
   syncPoint: () => Promise<void>;
 }) {
-  // const hint = "エアコンを2時間使わないことで成人の木が一日で吸収する稜のCO2を削減できます";
-  const [hint, setHint] = useState("エアコンを2時間使わないことで成人の木が一日で吸収する稜のCO2を削減できます");
+  const hint = useHint();
   const [weatherIcon, weatherError] = useWeather();
 
   useEffect(() => {
     console.log("sync");
     syncPoint();
   }, [syncPoint]);
-
-  useEffect(() => {
-    if (weatherError) {
-      setHint(weatherError);
-    }
-  }, [weatherError]);
 
   function Button({ href, text }: { href: string; text: string }) {
     return (
@@ -50,6 +63,14 @@ function MainPage({
     return <div className={css.weather_icon} />;
   }
 
+  const Message = () => {
+    let message = hint;
+    if (weatherError) {
+      message = weatherError;
+    }
+    return <p className={css.hint}>{message}</p>;
+  };
+
   return (
     <div className={css.background}>
       <div className={css.container}>
@@ -65,19 +86,22 @@ function MainPage({
           <div className={css.container_top_right}>
             <h1 className={css.status_header}>気温/湿度</h1>
             <div className={css.temperature_outer_container}>
-              <div className={css.temperature_inner_container}></div>
+              <div className={css.temperature_inner_container}>
+                <TemperatureHumidity temperature={temperature} humidity={humidity} />
+              </div>
             </div>
             <h1 className={css.status_header}>天気/不快指数</h1>
             <div className={css.status_outer_container}>
               <div className={css.weather_inner_container}>
                 <WeatherIcon />
+                <DiscomfortIndex temperature={temperature} humidity={humidity} />
               </div>
             </div>
           </div>
         </div>
         <div className={css.hint_container}>
           <h1 className={css.hint_header}>CO2削減ヒント</h1>
-          <p className={css.hint}>{hint}</p>
+          <Message />
         </div>
       </div>
     </div>

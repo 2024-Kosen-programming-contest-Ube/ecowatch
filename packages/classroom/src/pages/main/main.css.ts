@@ -96,6 +96,33 @@ export const temperature_inner_container = style({
   marginBottom: "3px",
 });
 
+export const temperature_humidity = style({
+  display: "flex",
+  marginTop: "4px",
+});
+
+export const temperature_humidity_integer = style({
+  margin: 0,
+  fontWeight: theme.font.medium,
+  fontSize: "80px",
+  lineHeight: "80px",
+});
+
+export const temperature_humidity_symbol = style({
+  margin: 0,
+  marginTop: "6px",
+  fontWeight: theme.font.medium,
+  fontSize: "40px",
+  lineHeight: "40px",
+});
+
+export const temperature_humidity_decimal = style({
+  margin: 0,
+  fontWeight: theme.font.medium,
+  fontSize: "30px",
+  lineHeight: "30px",
+});
+
 export const weather_icon = style({
   width: "90px",
   height: "90px",
@@ -112,6 +139,14 @@ export const weather_inner_container = style({
   marginBottom: "3px",
   paddingTop: "5px",
   paddingBottom: "5px",
+});
+
+export const discomfort_index = style({
+  margin: "auto",
+  marginTop: "0",
+  fontWeight: theme.font.medium,
+  fontSize: "80px",
+  lineHeight: "80px",
 });
 
 export const hint_container = style({

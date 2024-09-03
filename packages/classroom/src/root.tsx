@@ -38,10 +38,10 @@ export const PageRoot = () => {
     });
   }, []);
 
-  const updateSensor = useCallback(() => {
+  const updateSensorInternal = useCallback(() => {
     const sensor: Sensor = {
-      temperature: 42.0,
-      humidity: 70,
+      temperature: 26.5,
+      humidity: 60,
       isPeople: true,
       lux: 77.4,
       useairconditionaer: true,
@@ -49,6 +49,11 @@ export const PageRoot = () => {
     };
     setTemperature(sensor.temperature);
     setHumidity(sensor.humidity);
+    return sensor;
+  }, []);
+
+  const updateSensor = useCallback(() => {
+    const sensor = updateSensorInternal();
 
     postJson("/api/classroom/sensor", JSON.stringify(sensor)).then((res) => {
       if (!res.ok) {
@@ -60,14 +65,15 @@ export const PageRoot = () => {
         setPoint(value.point);
       });
     });
-  }, []);
+  }, [updateSensorInternal]);
 
   useEffect(() => {
+    updateSensorInternal();
     const id = setInterval(updateSensor, 1000 * 60); // 1分ごと
     return () => {
       clearInterval(id);
     };
-  }, [updateSensor]);
+  }, [updateSensor, updateSensorInternal]);
 
   return (
     <BrowserRouter>
