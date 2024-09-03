@@ -1,17 +1,28 @@
 import { Link } from "react-router-dom";
 import * as css from "./main.css";
 import { useWeather } from "@/hooks/hookWeather";
-import { Suspense, useEffect, useState } from "react";
-import { useDayStatus } from "@/hooks/hookDayStatus";
+import { useEffect, useState } from "react";
 
-function MainPage() {
+function MainPage({
+  point,
+  temperature,
+  humidity,
+  syncPoint,
+}: {
+  point: number;
+  temperature: number;
+  humidity: number;
+  syncPoint: () => Promise<void>;
+}) {
   // const hint = "エアコンを2時間使わないことで成人の木が一日で吸収する稜のCO2を削減できます";
-  // const temperature = 50;
-  // const humidity = 50;
-  // const isPeople = true;
-  // const lux = 1;
   const [hint, setHint] = useState("エアコンを2時間使わないことで成人の木が一日で吸収する稜のCO2を削減できます");
   const [weatherIcon, weatherError] = useWeather();
+
+  useEffect(() => {
+    console.log("sync");
+    syncPoint();
+  }, [syncPoint]);
+
   useEffect(() => {
     if (weatherError) {
       setHint(weatherError);
@@ -29,8 +40,7 @@ function MainPage() {
   }
 
   function Point() {
-    const dayStatus = useDayStatus();
-    return <p className={css.point}>{dayStatus?.value?.point ?? 0}</p>;
+    return <p className={css.point}>{point ?? 0}</p>;
   }
 
   function WeatherIcon() {
@@ -46,9 +56,7 @@ function MainPage() {
         <div className={css.container_top}>
           <div className={css.container_top_left}>
             <h1 className={css.point_header}>本日のCO2削減ポイント</h1>
-            <Suspense fallback={<p className={css.point}>0</p>}>
-              <Point />
-            </Suspense>
+            <Point />
             <div className={css.button_container}>
               <Button href="/attend" text="出席確認" />
               <Button href="/" text="メニュー" />
