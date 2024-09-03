@@ -21,6 +21,7 @@ export const PageRoot = () => {
   const [humidity, setHumidity] = useState(0);
 
   const syncPoint = useCallback(async () => {
+    console.log("sync point");
     fetch("/api/classroom/get_now_status").then((res) => {
       if (!res.ok) {
         console.error(res.statusText);

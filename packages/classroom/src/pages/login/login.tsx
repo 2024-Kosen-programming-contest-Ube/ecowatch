@@ -1,4 +1,3 @@
-// import { useSelect } from "@/components/select";
 import * as css from "./login.css";
 import { useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -18,7 +17,6 @@ function LoginPage() {
   const schoolOptions = useMemo(() => {
     return (
       allClassrooms?.schools.map((v) => {
-        console.log("key", v.id);
         return { key: v.id, value: v.name };
       }) ?? []
     );
@@ -31,7 +29,6 @@ function LoginPage() {
       ...new Set(
         allClassrooms?.classrooms
           .filter((v) => {
-            console.log(v.school_id, selectedSchool);
             return v.school_id === selectedSchool;
           })
           .map((v) => {
@@ -52,7 +49,6 @@ function LoginPage() {
           return v.school_id === selectedSchool && String(v.grade) === selectedGrade;
         })
         .map((v) => {
-          console.log("key", v.id);
           return { key: v.name, value: v.name };
         }) ?? []
     );
@@ -67,9 +63,9 @@ function LoginPage() {
       .then((res) => {
         if (!res.ok) {
           console.error(res.statusText);
+          return;
         }
         res.json().then((data) => {
-          console.log("data", data);
           setAllClassrooms(data);
         });
       })
@@ -77,14 +73,6 @@ function LoginPage() {
         console.error(err);
       });
   }, []);
-
-  useEffect(() => {
-    console.log("selected", selectedSchool, selectedGrade, selectedName);
-    const classroom = allClassrooms?.classrooms.find((v) => {
-      return v.school_id === selectedSchool && String(v.grade) === selectedGrade && v.name === selectedName;
-    });
-    console.log("class", classroom);
-  }, [allClassrooms, selectedSchool, selectedGrade, selectedName]);
 
   function submit() {
     const classroom = allClassrooms?.classrooms.find((v) => {
@@ -100,7 +88,7 @@ function LoginPage() {
         if (res.ok) {
           navigate("/main");
         } else {
-          console.log(res.statusText);
+          console.error(res.statusText);
         }
       })
       .catch((err) => {

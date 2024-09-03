@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import * as css from "./main.css";
 import { useWeather } from "@/hooks/hookWeather";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useHint } from "@/hooks/hookHint";
 
 const TemperatureHumidity = ({ temperature, humidity }: { temperature: number; humidity: number }) => {
@@ -38,7 +38,6 @@ function MainPage({
   const [weatherIcon, weatherError] = useWeather();
 
   useEffect(() => {
-    console.log("sync");
     syncPoint();
   }, [syncPoint]);
 
