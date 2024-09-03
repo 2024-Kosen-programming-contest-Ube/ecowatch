@@ -1,30 +1,23 @@
-import { useCallback, useState } from "react";
+import { useMemo, useState } from "react";
 import * as css from "./inputText.css";
 import * as css_input from "./input.css";
 
-export function useInputText(): [
-  ({
-    label,
-    type,
-  }: {
-    label: string;
-    type?: React.HTMLInputTypeAttribute;
-  }) => JSX.Element,
-  string,
-] {
+type Props = {
+  label: string;
+  type?: React.HTMLInputTypeAttribute;
+};
+
+export function useInputText(props: Props): [JSX.Element, string] {
   const [value, setValue] = useState("");
 
-  const InputText = useCallback(
-    ({ label, type = "text" }: { label: string; type?: React.HTMLInputTypeAttribute }) => {
-      return (
-        <div className={css_input.input_row}>
-          <label className={css_input.label}>{label}</label>
-          <input value={value} onChange={(e) => setValue(e.target.value)} className={css.input} type={type} />
-        </div>
-      );
-    },
-    [value],
-  );
+  const inputText = useMemo(() => {
+    return (
+      <div className={css_input.input_row}>
+        <label className={css_input.label}>{props.label}</label>
+        <input value={value} onChange={(e) => setValue(e.target.value)} className={css.input} type={props.type} />
+      </div>
+    );
+  }, [props.label, props.type, value]);
 
-  return [InputText, value];
+  return [inputText, value];
 }
