@@ -26,7 +26,7 @@ export const PageRoot = () => {
       if (!res.ok) {
         console.error(res.statusText);
         if (res.status === 401) {
-          // TODO: redirect login page
+          window.location.href = "/login";
         }
         return;
       }
