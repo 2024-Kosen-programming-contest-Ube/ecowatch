@@ -39,7 +39,8 @@ export function useDayStatus(): FetchedData<DayStatus> {
   if (data.attend === undefined && data.class_id === undefined && data.date === undefined && data.point === undefined) {
     return { value: null, unauthorized: false, error: null };
   }
-  if (!data.attend || !data.class_id || !data.date || data.point == null) {
+  if (data.attend === undefined || !data.class_id || !data.date || data.point == null) {
+    console.log(data);
     throw Error("Invalid day status");
   }
   return { value: data, unauthorized: false, error: null };
