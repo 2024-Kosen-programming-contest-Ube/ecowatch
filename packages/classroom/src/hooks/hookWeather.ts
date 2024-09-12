@@ -89,7 +89,7 @@ export function useWeather(): [string | null, string | null] {
     fetch(`https://api.open-meteo.com/v1/forecast?${params.toString()}`)
       .then((res) => {
         res.json().then((data) => {
-          if (data?.current?.weather_code) {
+          if (data?.current?.weather_code !== undefined) {
             const code = Number(data.current.weather_code);
             if (code in weatherCode) {
               SetWeather(getWeatherIcon(weatherCode[code]));
