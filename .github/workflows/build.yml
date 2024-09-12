@@ -55,16 +55,14 @@ jobs:
       - name: Zip artifacts
         run: |
           cd ./artifacts
-          zip -r ecowatch_classroom
-          zip -r ecowatch_student
-          zip -r ecowatch_teacher
+          zip -r ecowatch_classroom.zip ecowatch_classroom
+          zip -r ecowatch_student.zip ecowatch_student
+          zip -r ecowatch_teacher.zip ecowatch_teacher
 
       - name: Create a GitHub release
         uses: ncipollo/release-action@v1
         with:
-          artifacts:
-            "./artifacts/ecowatch_backend-aarch64-unknown-linux-gnu.zip,
-            ./artifacts/ecowatch_backend-x86_64-pc-windows-gnu.zip,
-            ./artifacts/ecowatch_backend-x86_64-unknown-linux-gnu.zip,
-            ./artifacts/ecowatch_backend-x86_64-unknown-linux-musl.zip"
+          artifacts: "./artifacts/ecowatch_classroom.zip,
+            ./artifacts/ecowatch_student.zip,
+            ./artifacts/ecowatch_teacher.zip"
           makeLatest: "latest"
