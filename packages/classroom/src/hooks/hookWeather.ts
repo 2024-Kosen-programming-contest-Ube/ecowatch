@@ -69,12 +69,15 @@ export function useWeather(): [string | null, string | null] {
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(successGeolocation, errorGeolocation);
-    setInterval(
+    const id = setInterval(
       () => {
         navigator.geolocation.getCurrentPosition(successGeolocation, errorGeolocation);
       },
       1000 * 60 * 15, // 15分
     );
+    return () => {
+      clearInterval(id);
+    };
   }, []);
 
   function successGeolocation(pos: GeolocationPosition) {
