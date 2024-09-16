@@ -53,7 +53,7 @@ function MainPage({
   }
 
   function Point() {
-    return <p className={css.point}>{classPoint.point ?? 0}</p>;
+    return <p className={css.point}>{classPoint.point}</p>;
   }
 
   function WeatherIcon() {

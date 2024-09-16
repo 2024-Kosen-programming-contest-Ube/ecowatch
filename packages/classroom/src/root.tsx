@@ -78,12 +78,13 @@ export const PageRoot = () => {
           return;
         }
         res.json().then((value) => {
-          console.log(value.point);
-          setClassPoint(value.point);
+          if (value.point !== undefined) {
+            syncPoint();
+          } // TODO: apiから直接返す？
         });
       });
     }
-  }, [sensor]);
+  }, [sensor, syncPoint]);
 
   useEffect(() => {
     updateSensor();
