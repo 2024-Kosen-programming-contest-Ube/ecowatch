@@ -5,10 +5,11 @@ export const button = style({
   appearance: "none",
   width: "220px",
   height: "36px",
+  color: theme.color.blue,
   backgroundColor: theme.color.white,
   border: "1px solid",
   borderRadius: "32px",
   borderColor: theme.color.blue,
   fontWeight: theme.font.medium,
-  fontSize: "12px",
+  fontSize: "14px",
 });
