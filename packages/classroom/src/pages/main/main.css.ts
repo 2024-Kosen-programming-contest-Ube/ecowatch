@@ -18,7 +18,7 @@ export const container = style({
 
 export const container_top = style({
   display: "flex",
-  paddingTop: "58px",
+  paddingTop: "40px",
   paddingLeft: "71px",
 });
 
@@ -88,7 +88,7 @@ export const temperature_outer_container = style([status_outer_container, { marg
 
 export const temperature_inner_container = style({
   width: "100%",
-  height: "100px",
+  height: "85px",
   borderTop: "3px dotted",
   borderBottom: "3px dotted",
   borderColor: theme.color.blue, // TODO: Change color to suit status
@@ -98,7 +98,7 @@ export const temperature_inner_container = style({
 
 export const temperature_humidity = style({
   display: "flex",
-  marginTop: "4px",
+  marginTop: "-4px",
 });
 
 export const temperature_humidity_integer = style({
@@ -124,14 +124,14 @@ export const temperature_humidity_decimal = style({
 });
 
 export const weather_icon = style({
-  width: "90px",
-  height: "90px",
+  width: "80px",
+  height: "80px",
 });
 
 export const weather_inner_container = style({
   display: "flex",
   width: "100%",
-  height: "90px",
+  height: "80px",
   borderTop: "3px dotted",
   borderBottom: "3px dotted",
   borderColor: theme.color.blue, // TODO: Change color to suit status
@@ -142,11 +142,40 @@ export const weather_inner_container = style({
 });
 
 export const discomfort_index = style({
+  height: "80px",
   margin: "auto",
   marginTop: "0",
+  marginBottom: "0",
   fontWeight: theme.font.medium,
-  fontSize: "80px",
-  lineHeight: "80px",
+  fontSize: "70px",
+  lineHeight: "70px",
+});
+
+export const rank_container = style({
+  display: "flex",
+  height: "40px",
+  justifyContent: "space-between",
+});
+
+export const rank_header = style({
+  margin: "0px",
+  marginTop: "10px",
+  color: theme.color.blue,
+  fontWeight: theme.font.semibold,
+  fontSize: "16px",
+});
+
+export const rank = style({
+  margin: "0",
+  fontWeight: theme.font.medium,
+  fontSize: "36px",
+});
+
+export const rank_prefix = style({
+  margin: "0",
+  marginTop: "20px",
+  fontWeight: theme.font.semibold,
+  fontSize: "16px",
 });
 
 export const hint_container = style({

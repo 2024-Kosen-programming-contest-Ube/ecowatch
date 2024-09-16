@@ -3,6 +3,7 @@ import * as css from "./main.css";
 import { useWeather } from "@/hooks/hookWeather";
 import { useEffect } from "react";
 import { useHint } from "@/hooks/hookHint";
+import type { ClassPoint } from "@/root";
 
 const TemperatureHumidity = ({ temperature, humidity }: { temperature: number; humidity: number }) => {
   const decimal = Math.trunc((Math.abs(temperature) - Math.trunc(Math.abs(temperature))) * 10);
@@ -24,12 +25,12 @@ const DiscomfortIndex = ({ temperature, humidity }: { temperature: number; humid
 };
 
 function MainPage({
-  point,
+  classPoint,
   temperature,
   humidity,
   syncPoint,
 }: {
-  point: number;
+  classPoint: ClassPoint;
   temperature: number;
   humidity: number;
   syncPoint: () => Promise<void>;
@@ -52,7 +53,7 @@ function MainPage({
   }
 
   function Point() {
-    return <p className={css.point}>{point ?? 0}</p>;
+    return <p className={css.point}>{classPoint.point ?? 0}</p>;
   }
 
   function WeatherIcon() {
@@ -95,6 +96,11 @@ function MainPage({
                 <WeatherIcon />
                 <DiscomfortIndex temperature={temperature} humidity={humidity} />
               </div>
+            </div>
+            <div className={css.rank_container}>
+              <h1 className={css.rank_header}>クラス順位</h1>
+              <p className={css.rank}>{classPoint.rank}</p>
+              <p className={css.rank_prefix}>{`位(/${classPoint.classNum}クラス)`}</p>
             </div>
           </div>
         </div>

@@ -15,14 +15,20 @@ type Sensor = {
   airconditionaertime: string;
 };
 
+export type ClassPoint = {
+  point: number;
+  rank: number;
+  classNum: number;
+};
+
 export const PageRoot = () => {
-  const [point, setPoint] = useState(0);
+  const [classPoint, setClassPoint] = useState<ClassPoint>({ point: 0, rank: 0, classNum: 0 });
   const [temperature, setTemperature] = useState(0);
   const [humidity, setHumidity] = useState(0);
 
   const syncPoint = useCallback(async () => {
     console.log("sync point");
-    fetch("/api/classroom/get_now_status").then((res) => {
+    fetch("/api/classroom/point").then((res) => {
       if (!res.ok) {
         console.error(res.statusText);
         if (res.status === 401) {
@@ -31,10 +37,11 @@ export const PageRoot = () => {
         return;
       }
       res.json().then((data) => {
-        if (!data || data.point === undefined) {
+        if (!data || data.point === undefined || data.rank === undefined || data.class_num === undefined) {
           console.error("Invalid data");
+        } else {
+          setClassPoint({ point: data.point, rank: data.rank, classNum: data.class_num });
         }
-        setPoint(data.point);
       });
     });
   }, []);
@@ -63,7 +70,7 @@ export const PageRoot = () => {
       }
       res.json().then((value) => {
         console.log(value.point);
-        setPoint(value.point);
+        setClassPoint(value.point);
       });
     });
   }, [updateSensorInternal]);
@@ -82,7 +89,10 @@ export const PageRoot = () => {
         <Route path="/">
           <Route index element={<MenuPage />} />
           <Route path="login" element={<LoginPage />} />
-          <Route path="main" element={<MainPage point={point} temperature={temperature} humidity={humidity} syncPoint={syncPoint} />} />
+          <Route
+            path="main"
+            element={<MainPage classPoint={classPoint} temperature={temperature} humidity={humidity} syncPoint={syncPoint} />}
+          />
           <Route path="attend" element={<AttendPage />} />
         </Route>
       </Routes>
