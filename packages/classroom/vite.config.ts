@@ -15,6 +15,11 @@ export default defineConfig(({ mode }) => {
           changeOrigin: true,
           rewrite: (path) => path.replace(/^\/api/, ""),
         },
+        "/sensor": {
+          target: env.VITE_DEV_CONFIG_SENSOR_URL,
+          changeOrigin: true,
+          rewrite: (path) => path.replace(/^\/sensor/, ""),
+        },
       },
     },
   };
