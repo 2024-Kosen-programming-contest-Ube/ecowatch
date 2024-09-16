@@ -100,7 +100,7 @@ function MainPage({
             <div className={css.rank_container}>
               <h1 className={css.rank_header}>クラス順位</h1>
               <p className={css.rank}>{classPoint.rank}</p>
-              <p className={css.rank_prefix}>{`位(/${classPoint.classNum}クラス)`}</p>
+              <p className={css.rank_prefix}>{`位(/${classPoint.class_num}クラス)`}</p>
             </div>
           </div>
         </div>

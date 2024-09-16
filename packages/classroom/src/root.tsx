@@ -5,6 +5,7 @@ import AttendPage from "./pages/attend/attend.tsx";
 import LoginPage from "./pages/login/login.tsx";
 import { useCallback, useEffect, useState } from "react";
 import { postJson } from "@ecowatch/utils";
+import { z } from "zod";
 
 type Sensor = {
   temperature: number;
@@ -15,14 +16,16 @@ type Sensor = {
   airconditionaertime: string;
 };
 
-export type ClassPoint = {
-  point: number;
-  rank: number;
-  classNum: number;
-};
+const schemaClassPoint = z.object({
+  point: z.number(),
+  rank: z.number(),
+  class_num: z.number(),
+});
+
+export type ClassPoint = z.infer<typeof schemaClassPoint>;
 
 export const PageRoot = () => {
-  const [classPoint, setClassPoint] = useState<ClassPoint>({ point: 0, rank: 0, classNum: 0 });
+  const [classPoint, setClassPoint] = useState<ClassPoint>({ point: 0, rank: 0, class_num: 0 });
   const [temperature, setTemperature] = useState(0);
   const [humidity, setHumidity] = useState(0);
 
@@ -37,10 +40,11 @@ export const PageRoot = () => {
         return;
       }
       res.json().then((data) => {
-        if (!data || data.point === undefined || data.rank === undefined || data.class_num === undefined) {
-          console.error("Invalid data");
+        const parsed = schemaClassPoint.safeParse(data);
+        if (parsed.success) {
+          setClassPoint(parsed.data);
         } else {
-          setClassPoint({ point: data.point, rank: data.rank, classNum: data.class_num });
+          console.error(parsed.error);
         }
       });
     });
