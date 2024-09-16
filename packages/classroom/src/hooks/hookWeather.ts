@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import weatherCloudyIcon from "@/assets/weather/cloudy.svg";
 import weatherRainyIcon from "@/assets/weather/rainy.svg";
 import weatherSnowyIcon from "@/assets/weather/snowy.svg";
@@ -67,26 +67,11 @@ export function useWeather(): [string | null, string | null] {
   const [weather, SetWeather] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
 
-  useEffect(() => {
-    navigator.geolocation.getCurrentPosition(successGeolocation, errorGeolocation);
-    const id = setInterval(
-      () => {
-        navigator.geolocation.getCurrentPosition(successGeolocation, errorGeolocation);
-      },
-      1000 * 60 * 15, // 15分
-    );
-    return () => {
-      clearInterval(id);
-    };
-  }, []);
-
-  function successGeolocation(pos: GeolocationPosition) {
-    const crd = pos.coords;
-
+  const updateWeather = useCallback((latitude: number, longitude: number) => {
     const params = new URLSearchParams();
     params.set("timezone", "Asia/Tokyo");
-    params.set("latitude", String(crd.latitude));
-    params.set("longitude", String(crd.longitude));
+    params.set("latitude", String(latitude));
+    params.set("longitude", String(longitude));
     params.set("current", "weather_code");
 
     fetch(`https://api.open-meteo.com/v1/forecast?${params.toString()}`)
@@ -105,11 +90,32 @@ export function useWeather(): [string | null, string | null] {
       .catch((err) => {
         setError(`天候情報の取得に失敗しました。${err.message}`);
       });
-  }
+  }, []);
 
-  function errorGeolocation(err: GeolocationPositionError) {
+  const successGeolocation = useCallback(
+    (pos: GeolocationPosition) => {
+      const crd = pos.coords;
+      updateWeather(crd.latitude, crd.longitude);
+    },
+    [updateWeather],
+  );
+
+  const errorGeolocation = useCallback((err: GeolocationPositionError) => {
     setError(`位置情報の取得に失敗しました。ERROR(${err.code}): ${err.message}`);
-  }
+  }, []);
+
+  useEffect(() => {
+    navigator.geolocation.getCurrentPosition(successGeolocation, errorGeolocation);
+    const id = setInterval(
+      () => {
+        navigator.geolocation.getCurrentPosition(successGeolocation, errorGeolocation);
+      },
+      1000 * 60 * 15, // 15分
+    );
+    return () => {
+      clearInterval(id);
+    };
+  }, [successGeolocation, errorGeolocation]);
 
   return [weather, error];
 }
