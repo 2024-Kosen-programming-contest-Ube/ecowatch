@@ -95,6 +95,7 @@ export function useWeather(): [string | null, string | null] {
   const successGeolocation = useCallback(
     (pos: GeolocationPosition) => {
       const crd = pos.coords;
+      console.log(crd.latitude, crd.longitude);
       updateWeather(crd.latitude, crd.longitude);
     },
     [updateWeather],
@@ -104,18 +105,27 @@ export function useWeather(): [string | null, string | null] {
     setError(`位置情報の取得に失敗しました。ERROR(${err.code}): ${err.message}`);
   }, []);
 
+  const getLocation = useCallback(() => {
+    console.log(import.meta.env.VITE_USE_GEOLOCATION_API);
+    if (import.meta.env.VITE_USE_GEOLOCATION_API === "true") {
+      navigator.geolocation.getCurrentPosition(successGeolocation, errorGeolocation);
+    } else {
+      updateWeather(import.meta.env.VITE_LOCATION_LATITUDE, import.meta.env.VITE_LOCATION_LONGITUDE);
+    }
+  }, [errorGeolocation, successGeolocation, updateWeather]);
+
   useEffect(() => {
-    navigator.geolocation.getCurrentPosition(successGeolocation, errorGeolocation);
+    getLocation();
     const id = setInterval(
       () => {
-        navigator.geolocation.getCurrentPosition(successGeolocation, errorGeolocation);
+        getLocation();
       },
       1000 * 60 * 15, // 15分
     );
     return () => {
       clearInterval(id);
     };
-  }, [successGeolocation, errorGeolocation]);
+  }, [getLocation]);
 
   return [weather, error];
 }
