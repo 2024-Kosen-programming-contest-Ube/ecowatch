@@ -2,10 +2,10 @@
   "name": "ecowatch",
   "version": "1.0.0",
   "engines": {
-    "pnpm": "9.9.0",
+    "pnpm": "9.10.0",
     "npm": "please_use_pnpm_instead"
   },
-  "packageManager": "pnpm@9.9.0",
+  "packageManager": "pnpm@9.10.0",
   "scripts": {
     "classroom": "pnpm -F classroom",
     "student": "pnpm -F student",
