@@ -4,5 +4,6 @@ import { theme } from "./src/theme.css";
 import { useInputText } from "./src/inputText";
 import { useInputSelect } from "./src/inputSelect";
 import { Submit } from "./src/submit";
+import { ButtonLinkMobile } from "./src/buttonLinkMobile";
 
-export { HeadIcon, HeadFont, theme, useInputText, useInputSelect, Submit };
+export { HeadIcon, HeadFont, theme, useInputText, useInputSelect, Submit, ButtonLinkMobile };
