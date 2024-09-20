@@ -7,6 +7,9 @@ import { useCallback, useEffect, useState } from "react";
 import { postJson } from "@ecowatch/utils";
 import { z } from "zod";
 
+// biome-ignore lint/security/noGlobalEval: <explanation>
+const SENSOR_INTERVAL = eval(import.meta.env.VITE_SENSOR_INTERVAL);
+
 const schemaClassPoint = z.object({
   point: z.number(),
   rank: z.number(),
@@ -88,7 +91,7 @@ export const PageRoot = () => {
 
   useEffect(() => {
     updateSensor();
-    const id = setInterval(updateSensor, 1000 * 60); // 1分ごと
+    const id = setInterval(updateSensor, SENSOR_INTERVAL); // 1分ごと
     return () => {
       clearInterval(id);
     };
