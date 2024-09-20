@@ -5,9 +5,7 @@ const button_base = style({
   width: "100%",
   height: "47px",
   backgroundColor: "transparent",
-  color: theme.color.white,
   border: "2px solid",
-  borderColor: theme.color.white,
   borderRadius: "11px",
   marginBottom: "17px",
   fontSize: "20px",
@@ -18,5 +16,14 @@ export const button_white = style([
   button_base,
   {
     color: theme.color.white,
+    borderColor: theme.color.white,
+  },
+]);
+
+export const button_blue = style([
+  button_base,
+  {
+    color: theme.color.blue,
+    borderColor: theme.color.blue,
   },
 ]);

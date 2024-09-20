@@ -1,4 +1,4 @@
-import { theme } from "@ecowatch/ui";
+import { theme } from "./theme.css";
 import { style } from "@vanilla-extract/css";
 
 export const header_container = style({

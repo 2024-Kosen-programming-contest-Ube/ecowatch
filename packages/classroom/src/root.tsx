@@ -6,6 +6,8 @@ import LoginPage from "./pages/login/login.tsx";
 import { useCallback, useEffect, useState } from "react";
 import { postJson } from "@ecowatch/utils";
 import { z } from "zod";
+import LogoutPage from "./pages/logout/logout.tsx";
+import SettingPage from "./pages/setting/setting.tsx";
 
 // biome-ignore lint/security/noGlobalEval: <explanation>
 const SENSOR_INTERVAL = eval(import.meta.env.VITE_SENSOR_INTERVAL);
@@ -103,6 +105,8 @@ export const PageRoot = () => {
         <Route path="/">
           <Route index element={<MenuPage />} />
           <Route path="login" element={<LoginPage />} />
+          <Route path="logout" element={<LogoutPage />} />
+          <Route path="setting" element={<SettingPage />} />
           <Route
             path="main"
             element={

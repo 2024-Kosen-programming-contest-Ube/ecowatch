@@ -1,43 +1,32 @@
-import { Link } from "react-router-dom";
-import * as css from "./menu.css";
-import * as css_button from "../../styles/buttons.css";
 import { useDayStatus } from "@/hooks/hookDayStatus";
 import { Suspense } from "react";
 import { ErrorBoundary } from "react-error-boundary";
+import { LinkButtonWhite } from "@/components/linkButton";
+import * as css from "./menu.css";
 
 function MenuPage() {
-  function LinkButton({ href, text }: { href: string; text: string }) {
-    return (
-      <Link to={href}>
-        <button type="button" className={css_button.button_white}>
-          {text}
-        </button>
-      </Link>
-    );
-  }
-
   function MainLoginButton() {
     const status = useDayStatus();
 
     if (status.unauthorized) {
-      return <LinkButton href="/login" text="ログイン" />;
+      return <LinkButtonWhite href="/login" text="ログイン" />;
     }
     if (status.unauthorized === false && !status.error) {
-      return <LinkButton href="/main" text="メイン画面" />;
+      return <LinkButtonWhite href="/main" text="メイン画面" />;
     }
-    <LinkButton href="/main" text="" />;
+    <LinkButtonWhite href="/main" text="" />;
   }
 
   return (
     <div className={css.container}>
       <div className={css.top_container}></div>
       <div className={css.button_container}>
-        <ErrorBoundary fallback={<LinkButton href="/" text="error" />}>
-          <Suspense fallback={<LinkButton href="/" text="" />}>
+        <ErrorBoundary fallback={<LinkButtonWhite href="/" text="error" />}>
+          <Suspense fallback={<LinkButtonWhite href="/" text="" />}>
             <MainLoginButton />
           </Suspense>
         </ErrorBoundary>
-        <LinkButton href="/setting" text="設定" />
+        <LinkButtonWhite href="/setting" text="設定" />
       </div>
     </div>
   );

@@ -1,9 +1,8 @@
 import * as css from "./login.css";
 import { useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Submit, useInputSelect, useInputText } from "@ecowatch/ui";
+import { Header, Submit, useInputSelect, useInputText } from "@ecowatch/ui";
 import { postJson } from "@ecowatch/utils";
-import { Header } from "@/components/header";
 
 type AllClassrooms = {
   schools: { id: string; name: string }[];

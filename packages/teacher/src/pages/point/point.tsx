@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import * as css from "./point.css";
-import { ButtonLinkMobile } from "@ecowatch/ui";
-import { Header } from "@/components/header";
+import { ButtonLinkMobile, Header } from "@ecowatch/ui";
 
 const PointPage = () => {
   const [point, setPoint] = useState(0);

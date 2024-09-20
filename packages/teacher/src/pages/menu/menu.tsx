@@ -1,4 +1,4 @@
-import { Header } from "@/components/header";
+import { Header } from "@ecowatch/ui";
 import * as css from "./menu.css";
 import { Link } from "react-router-dom";
 
