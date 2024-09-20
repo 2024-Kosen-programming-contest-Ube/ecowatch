@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import * as css from "./point.css";
 import { ButtonLinkMobile } from "@ecowatch/ui";
+import { Header } from "@/components/header";
 
 const PointPage = () => {
   const [point, setPoint] = useState(0);
@@ -25,8 +26,8 @@ const PointPage = () => {
 
   return (
     <div>
+      <Header title="ポイント" />
       <div className={css.container}>
-        <h1 className={css.header}>ポイント</h1>
         <p className={css.point}>{point}</p>
         <div className={css.button_container}>
           <ButtonLinkMobile href="/teacher/menu" text="メニュー" />
