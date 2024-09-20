@@ -7,12 +7,6 @@ export const container = style({
   overflow: "hidden",
 });
 
-export const header = style({
-  width: "100%",
-  height: "38px",
-  backgroundColor: theme.color.blue,
-});
-
 export const input_container = style({
   display: "grid",
   // gridTemplateColumns: 1,

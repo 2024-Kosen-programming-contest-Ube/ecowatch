@@ -7,6 +7,7 @@ import { Helmet, HelmetProvider } from "react-helmet-async";
 import LoginPage from "./pages/login/login";
 import MenuPage from "./pages/menu/menu";
 import PointPage from "./pages/point/point";
+import LogoutPage from "./pages/logout/logout";
 
 const RootPage = () => {
   useEffect(() => {
@@ -36,6 +37,7 @@ createRoot(document.getElementById("root")!).render(
           <Route path="/" element={<Navigate replace to="/teacher/" />} />
           <Route path="/teacher/" element={<RootPage />} />
           <Route path="/teacher/login" element={<LoginPage />} />
+          <Route path="/teacher/logout" element={<LogoutPage />} />
           <Route path="/teacher/menu" element={<MenuPage />} />
           <Route path="/teacher/point" element={<PointPage />} />
         </Routes>

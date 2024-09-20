@@ -18,9 +18,7 @@ const MenuPage = () => {
       <Header title="教員メニュー" />
       <div className={css.menu_container}>
         <MenuItem href="/teacher/point" title="ポイント確認" />
-        {/* <MenuItem href="/" title="ポイント確認" /> */}
-        {/* <MenuItem href="/" title="ポイント確認" /> */}
-        {/* <MenuItem href="/" title="ポイント確認" /> */}
+        <MenuItem href="/teacher/logout" title="ログアウト" />
       </div>
     </div>
   );

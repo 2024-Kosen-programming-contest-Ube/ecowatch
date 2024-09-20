@@ -3,6 +3,7 @@ import { useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Submit, useInputSelect, useInputText } from "@ecowatch/ui";
 import { postJson } from "@ecowatch/utils";
+import { Header } from "@/components/header";
 
 type AllClassrooms = {
   schools: { id: string; name: string }[];
@@ -86,7 +87,7 @@ function LoginPage() {
     postJson("/api/classroom/login", data_json)
       .then((res) => {
         if (res.ok) {
-          navigate("/menu");
+          navigate("/teacher/menu");
         } else {
           console.error(res.statusText);
         }
@@ -98,7 +99,7 @@ function LoginPage() {
 
   return (
     <div className={css.container}>
-      <div className={css.header} />
+      <Header title="ログイン" />
       <div className={css.input_container}>
         {inputSelectSchool}
         {inputSelectGrade}
