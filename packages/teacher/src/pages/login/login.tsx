@@ -97,7 +97,7 @@ function LoginPage() {
   }
 
   return (
-    <div className={css.container}>
+    <div>
       <Header title="ログイン" />
       <div className={css.input_container}>
         {inputSelectSchool}

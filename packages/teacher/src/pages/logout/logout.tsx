@@ -1,4 +1,3 @@
-import * as css from "./logout.css";
 import { useEffect, useState } from "react";
 import { postJson } from "@ecowatch/utils";
 import { Link } from "react-router-dom";
@@ -41,8 +40,8 @@ const LogoutPage = () => {
   };
 
   return (
-    <div className={css.container}>
-      <Header title="ログイン" />
+    <div>
+      <Header title="ログアウト" />
       <Message />
     </div>
   );

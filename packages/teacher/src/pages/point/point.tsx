@@ -6,7 +6,7 @@ const PointPage = () => {
   const [point, setPoint] = useState(0);
 
   useEffect(() => {
-    fetch("/api/classroom/get_now_status").then((res) => {
+    fetch("/api/classroom/point").then((res) => {
       if (!res.ok) {
         console.error(res.statusText);
         if (res.status === 401) {

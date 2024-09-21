@@ -18,6 +18,7 @@ export const point = style({
   fontWeight: theme.font.medium,
   fontSize: "160px",
   lineHeight: "160px",
+  textAlign: "center",
 });
 
 export const button_container = style({
