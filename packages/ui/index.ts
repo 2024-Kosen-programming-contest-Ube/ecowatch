@@ -5,6 +5,7 @@ import { useInputText } from "./src/inputText";
 import { useInputSelect } from "./src/inputSelect";
 import { Submit } from "./src/submit";
 import { ButtonLinkMobile } from "./src/buttonLinkMobile";
+import { ButtonMobile } from "./src/buttonMobile";
 import { Header } from "./src/header";
 
-export { HeadIcon, HeadFont, theme, useInputText, useInputSelect, Submit, ButtonLinkMobile, Header };
+export { HeadIcon, HeadFont, theme, useInputText, useInputSelect, Submit, ButtonLinkMobile, ButtonMobile, Header };
