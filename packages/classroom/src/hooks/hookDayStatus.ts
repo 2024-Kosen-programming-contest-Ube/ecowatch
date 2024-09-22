@@ -1,3 +1,4 @@
+import { BACKEND_URL } from "@/main";
 import { type FetchedData, type Resolve, resolver } from "@ecowatch/utils";
 import { useEffect } from "react";
 
@@ -20,7 +21,7 @@ export function useDayStatus(): FetchedData<DayStatus> {
   }, []);
 
   if (!dayStatusFetcher) {
-    dayStatusFetcher = resolver(fetch("/api/classroom/get_now_status"));
+    dayStatusFetcher = resolver(fetch(`${BACKEND_URL}/classroom/get_now_status`));
   }
   if (dayStatusFetcher && !dayStatusJsonFetcher) {
     const res = dayStatusFetcher.resolve();

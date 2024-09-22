@@ -3,13 +3,14 @@ import { useEffect, useState } from "react";
 import { postJson } from "@ecowatch/utils";
 import { Link } from "react-router-dom";
 import { Header } from "@ecowatch/ui";
+import { BACKEND_URL } from "@/main";
 
 const LogoutPage = () => {
   const [logouted, setLogouted] = useState(false);
   const [error, setError] = useState("");
 
   useEffect(() => {
-    postJson("/api/classroom/logout", "")
+    postJson(`${BACKEND_URL}/classroom/logout`, "")
       .then((res) => {
         if (res.ok) {
           setLogouted(true);

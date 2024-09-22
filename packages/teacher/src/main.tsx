@@ -9,9 +9,11 @@ import MenuPage from "./pages/menu/menu";
 import PointPage from "./pages/point/point";
 import LogoutPage from "./pages/logout/logout";
 
+export const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
+
 const RootPage = () => {
   useEffect(() => {
-    fetch("/api/classroom/get_now_status").then((res) => {
+    fetch(`${BACKEND_URL}/classroom/get_now_status`).then((res) => {
       if (!res.ok) {
         console.error(res.statusText);
         if (res.status === 401) {

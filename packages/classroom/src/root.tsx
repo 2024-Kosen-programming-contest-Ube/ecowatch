@@ -8,6 +8,7 @@ import { postJson } from "@ecowatch/utils";
 import { z } from "zod";
 import LogoutPage from "./pages/logout/logout.tsx";
 import SettingPage from "./pages/setting/setting.tsx";
+import { BACKEND_URL } from "./main.tsx";
 
 // biome-ignore lint/security/noGlobalEval: <explanation>
 const SENSOR_INTERVAL = eval(import.meta.env.VITE_SENSOR_INTERVAL);
@@ -37,7 +38,7 @@ export const PageRoot = () => {
 
   const syncPoint = useCallback(async () => {
     console.log("sync point");
-    fetch("/api/classroom/point").then((res) => {
+    fetch(`${BACKEND_URL}/classroom/point`).then((res) => {
       if (!res.ok) {
         console.error(res.statusText);
         if (res.status === 401) {
@@ -77,7 +78,7 @@ export const PageRoot = () => {
 
   useEffect(() => {
     if (sensor) {
-      postJson("/api/classroom/sensor", JSON.stringify(sensor)).then((res) => {
+      postJson(`${BACKEND_URL}/classroom/sensor`, JSON.stringify(sensor)).then((res) => {
         if (!res.ok) {
           console.error(res.statusText);
           return;

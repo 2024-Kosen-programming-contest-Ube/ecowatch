@@ -8,6 +8,8 @@ import LoginPage from "./pages/login/login";
 import ChecklistPage from "./pages/checklist/checklist";
 import PointPage from "./pages/point/point";
 
+export const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
+
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <HelmetProvider>
@@ -17,7 +19,8 @@ createRoot(document.getElementById("root")!).render(
       </Helmet>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Navigate replace to="/student/" />} />
+          <Route path="/" element={<Navigate replace to="/student/checklist" />} />
+          <Route path="/student" element={<Navigate replace to="/student/checklist" />} />
           <Route path="/student/login" element={<LoginPage />} />
           <Route path="/student/checklist" element={<ChecklistPage />} />
           <Route path="/student/point" element={<PointPage />} />

@@ -4,6 +4,7 @@ import * as css from "./checklist.css";
 import { useEffect, useState } from "react";
 import { postJson } from "@ecowatch/utils";
 import { useNavigate } from "react-router-dom";
+import { BACKEND_URL } from "@/main";
 
 type CheckPoint = {
   id: string;
@@ -38,7 +39,7 @@ const ChecklistPage = () => {
   });
 
   useEffect(() => {
-    fetch("/api/student/exist_checklist").then((res) => {
+    fetch(`${BACKEND_URL}/student/exist_checklist`).then((res) => {
       if (!res.ok) {
         console.error(res.statusText);
         if (res.status === 401) {
@@ -77,7 +78,7 @@ const ChecklistPage = () => {
 
   const handleSubmit: React.MouseEventHandler<HTMLButtonElement> = () => {
     console.log(JSON.stringify({ checklist: checklist }));
-    postJson("/api/student/checklist", JSON.stringify({ checklist: checklist })).then((res) => {
+    postJson(`${BACKEND_URL}/student/checklist`, JSON.stringify({ checklist: checklist })).then((res) => {
       if (!res.ok) {
         console.error(res.statusText);
         if (res.status === 401) {

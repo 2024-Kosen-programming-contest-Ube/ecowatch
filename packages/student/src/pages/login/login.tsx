@@ -3,6 +3,7 @@ import { useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Header, Submit, useInputSelect, useInputText } from "@ecowatch/ui";
 import { postJson } from "@ecowatch/utils";
+import { BACKEND_URL } from "@/main";
 
 type AllClassrooms = {
   schools: { id: string; name: string }[];
@@ -59,7 +60,7 @@ function LoginPage() {
   const [inputStudentID, studentID] = useInputText({ label: "出席番号", type: "number" });
 
   useEffect(() => {
-    fetch("/api/classroom/get_all")
+    fetch(`${BACKEND_URL}/classroom/get_all`)
       .then((res) => {
         if (!res.ok) {
           console.error(res.statusText);
@@ -83,7 +84,7 @@ function LoginPage() {
     }
     const data = { class_id: classroom.id, student_id: studentID };
     const data_json = JSON.stringify(data);
-    postJson("/api/student/login", data_json)
+    postJson(`${BACKEND_URL}/student/login`, data_json)
       .then((res) => {
         if (res.ok) {
           navigate("/student/checklist");
