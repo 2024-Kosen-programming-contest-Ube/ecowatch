@@ -8,6 +8,12 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Set .env file
+        run: |
+          mv ./classroom/sample.env ./classroom/.env
+          mv ./student/sample.env ./student/.env
+          mv ./teacher/sample.env ./teacher/.env
+
       - name: Enable corepack
         run: corepack enable
 
