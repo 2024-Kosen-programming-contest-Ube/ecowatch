@@ -2,7 +2,7 @@ import * as css from "./login.css";
 import { useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Header, Submit, useInputSelect, useInputText } from "@ecowatch/ui";
-import { postJson } from "@ecowatch/utils";
+import { get, postJson } from "@ecowatch/utils";
 import { BACKEND_URL } from "@/main";
 
 type AllClassrooms = {
@@ -60,7 +60,7 @@ function LoginPage() {
   const [inputPassword, password] = useInputText({ label: "パスワード" });
 
   useEffect(() => {
-    fetch(`${BACKEND_URL}/classroom/get_all`)
+    get(`${BACKEND_URL}/classroom/get_all`)
       .then((res) => {
         if (!res.ok) {
           console.error(res.statusText);

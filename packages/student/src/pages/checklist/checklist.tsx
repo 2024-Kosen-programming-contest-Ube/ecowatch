@@ -2,7 +2,7 @@ import { ButtonMobile, Header } from "@ecowatch/ui";
 import submitIcon from "@/assets/submit.svg";
 import * as css from "./checklist.css";
 import { useEffect, useState } from "react";
-import { postJson } from "@ecowatch/utils";
+import { get, postJson } from "@ecowatch/utils";
 import { useNavigate } from "react-router-dom";
 import { BACKEND_URL } from "@/main";
 
@@ -39,7 +39,7 @@ const ChecklistPage = () => {
   });
 
   useEffect(() => {
-    fetch(`${BACKEND_URL}/student/exist_checklist`).then((res) => {
+    get(`${BACKEND_URL}/student/exist_checklist`).then((res) => {
       if (!res.ok) {
         console.error(res.statusText);
         if (res.status === 401) {

@@ -5,6 +5,7 @@ import weatherSnowyIcon from "@/assets/weather/snowy.svg";
 import weatherSunnyCloudyIcon from "@/assets/weather/sunny_cloudy.svg";
 import weatherSunnyIcon from "@/assets/weather/sunny.svg";
 import weatherThunderstormIcon from "@/assets/weather/thunderstorm.svg";
+import { get } from "@ecowatch/utils";
 
 enum Weather {
   SUNNY = "sunny",
@@ -74,7 +75,7 @@ export function useWeather(): [string | null, string | null] {
     params.set("longitude", String(longitude));
     params.set("current", "weather_code");
 
-    fetch(`https://api.open-meteo.com/v1/forecast?${params.toString()}`)
+    get(`https://api.open-meteo.com/v1/forecast?${params.toString()}`)
       .then((res) => {
         res.json().then((data) => {
           if (data?.current?.weather_code !== undefined) {

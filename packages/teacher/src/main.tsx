@@ -8,12 +8,13 @@ import LoginPage from "./pages/login/login";
 import MenuPage from "./pages/menu/menu";
 import PointPage from "./pages/point/point";
 import LogoutPage from "./pages/logout/logout";
+import { get } from "@ecowatch/utils";
 
 export const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
 const RootPage = () => {
   useEffect(() => {
-    fetch(`${BACKEND_URL}/classroom/get_now_status`).then((res) => {
+    get(`${BACKEND_URL}/classroom/get_now_status`).then((res) => {
       if (!res.ok) {
         console.error(res.statusText);
         if (res.status === 401) {

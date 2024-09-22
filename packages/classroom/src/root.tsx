@@ -4,7 +4,7 @@ import MainPage from "./pages/main/main.tsx";
 import AttendPage from "./pages/attend/attend.tsx";
 import LoginPage from "./pages/login/login.tsx";
 import { useCallback, useEffect, useState } from "react";
-import { postJson } from "@ecowatch/utils";
+import { get, postJson } from "@ecowatch/utils";
 import { z } from "zod";
 import LogoutPage from "./pages/logout/logout.tsx";
 import SettingPage from "./pages/setting/setting.tsx";
@@ -38,7 +38,7 @@ export const PageRoot = () => {
 
   const syncPoint = useCallback(async () => {
     console.log("sync point");
-    fetch(`${BACKEND_URL}/classroom/point`).then((res) => {
+    get(`${BACKEND_URL}/classroom/point`).then((res) => {
       if (!res.ok) {
         console.error(res.statusText);
         if (res.status === 401) {
@@ -59,7 +59,7 @@ export const PageRoot = () => {
 
   const updateSensor = useCallback(async () => {
     console.log("scan sensor");
-    fetch("/sensor/data/getinfo").then((res) => {
+    get("/sensor/data/getinfo").then((res) => {
       if (!res.ok) {
         console.error(res.statusText);
         return;

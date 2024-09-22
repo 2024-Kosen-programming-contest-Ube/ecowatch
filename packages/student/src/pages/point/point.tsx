@@ -2,12 +2,13 @@ import { useEffect, useState } from "react";
 import * as css from "./point.css";
 import { Header } from "@ecowatch/ui";
 import { BACKEND_URL } from "@/main";
+import { get } from "@ecowatch/utils";
 
 const PointPage = () => {
   const [point, setPoint] = useState(0);
 
   useEffect(() => {
-    fetch(`${BACKEND_URL}/classroom/point`).then((res) => {
+    get(`${BACKEND_URL}/classroom/point`).then((res) => {
       if (!res.ok) {
         console.error(res.statusText);
         if (res.status === 401) {
