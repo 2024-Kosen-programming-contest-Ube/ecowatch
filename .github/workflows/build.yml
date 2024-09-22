@@ -10,9 +10,9 @@ jobs:
 
       - name: Set .env file
         run: |
-          mv ./classroom/sample.env ./classroom/.env
-          mv ./student/sample.env ./student/.env
-          mv ./teacher/sample.env ./teacher/.env
+          mv ./packages/classroom/sample.env ./packages/classroom/.env
+          mv ./packages/student/sample.env ./packages/student/.env
+          mv ./packages/teacher/sample.env ./packages/teacher/.env
 
       - name: Enable corepack
         run: corepack enable
