@@ -13,13 +13,6 @@ const schemaDayStatus = z.object({
 
 export type DayStatus = z.infer<typeof schemaDayStatus>;
 
-// export type DayStatus = {
-//   attend: number;
-//   class_id: string;
-//   date: string;
-//   point: number;
-// };
-
 let dayStatusFetcher: Resolve<Response> | null = null;
 let dayStatusJsonFetcher: Resolve<DayStatus> | null = null;
 
@@ -47,7 +40,7 @@ export function useDayStatus(): FetchedData<DayStatus> {
   if (!dayStatusJsonFetcher) {
     throw Error("Unexpected");
   }
-  const data = dayStatusJsonFetcher?.resolve();
+  const data = dayStatusJsonFetcher.resolve();
   const parsed = schemaDayStatus.safeParse(data);
   if (parsed.success) {
     return { value: parsed.data, unauthorized: false, error: null };
