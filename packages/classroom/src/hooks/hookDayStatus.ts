@@ -1,13 +1,24 @@
 import { BACKEND_URL } from "@/main";
 import { type FetchedData, get, type Resolve, resolver } from "@ecowatch/utils";
 import { useEffect } from "react";
+import { z } from "zod";
 
-export type DayStatus = {
-  attend: number;
-  class_id: string;
-  date: string;
-  point: number;
-};
+const schemaDayStatus = z.object({
+  class_id: z.string(),
+  point: z.number(),
+  attend: z.number().nullable(),
+  date: z.string(),
+  leftovers: z.number().nullable(),
+});
+
+export type DayStatus = z.infer<typeof schemaDayStatus>;
+
+// export type DayStatus = {
+//   attend: number;
+//   class_id: string;
+//   date: string;
+//   point: number;
+// };
 
 let dayStatusFetcher: Resolve<Response> | null = null;
 let dayStatusJsonFetcher: Resolve<DayStatus> | null = null;
@@ -37,12 +48,10 @@ export function useDayStatus(): FetchedData<DayStatus> {
     throw Error("Unexpected");
   }
   const data = dayStatusJsonFetcher?.resolve();
-  if (data.attend === undefined && data.class_id === undefined && data.date === undefined && data.point === undefined) {
-    return { value: null, unauthorized: false, error: null };
+  const parsed = schemaDayStatus.safeParse(data);
+  if (parsed.success) {
+    return { value: parsed.data, unauthorized: false, error: null };
   }
-  if (data.attend === undefined || !data.class_id || !data.date || data.point == null) {
-    console.log(data);
-    throw Error("Invalid day status");
-  }
-  return { value: data, unauthorized: false, error: null };
+  console.error(parsed.error);
+  throw Error(parsed.error.message);
 }

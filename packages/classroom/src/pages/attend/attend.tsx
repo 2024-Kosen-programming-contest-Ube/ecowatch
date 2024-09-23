@@ -59,7 +59,7 @@ function AttendInterface() {
       </div>
       <div className={css.button_container}>
         {buttons}
-        <button onClick={() => setNum("")} type="button" className={css.button}>
+        <button onClick={() => startTransition(() => setNum(""))} type="button" className={css.button}>
           ×
         </button>
         <button onClick={() => updateNum(0)} type="button" className={css.button}>
