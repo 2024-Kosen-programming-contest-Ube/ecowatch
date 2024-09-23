@@ -25,7 +25,7 @@ const schemaSensor = z.object({
   isPeople: z.boolean(),
   lux: z.number(),
   useairconditioner: z.boolean(),
-  airconditionaer_time: z.string(),
+  airconditioner_time: z.string(),
 });
 
 export type ClassPoint = z.infer<typeof schemaClassPoint>;
