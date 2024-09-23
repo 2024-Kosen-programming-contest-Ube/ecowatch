@@ -24,7 +24,7 @@ const schemaSensor = z.object({
   humidity: z.number(),
   isPeople: z.boolean(),
   lux: z.number(),
-  useairconditionaer: z.boolean(),
+  useairconditioner: z.boolean(),
   airconditionaer_time: z.string(),
 });
 
