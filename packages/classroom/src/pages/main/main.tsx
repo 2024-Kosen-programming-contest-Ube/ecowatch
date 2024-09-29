@@ -80,6 +80,7 @@ function MainPage({
             <Point />
             <div className={css.button_container}>
               <Button href="/attend" text="出席確認" />
+              <Button href="/leftovers" text="食べ残し" />
               <Button href="/" text="メニュー" />
             </div>
           </div>

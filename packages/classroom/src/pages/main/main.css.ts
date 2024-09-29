@@ -52,12 +52,13 @@ export const point = style({
 
 export const button_container = style({
   display: "flex",
+  marginLeft: "-30px",
   justifyContent: "space-between",
 });
 
 export const button = style({
   height: "44px",
-  width: "160px",
+  width: "130px",
   padding: "0px",
   borderRadius: "56px",
   border: "2px solid",

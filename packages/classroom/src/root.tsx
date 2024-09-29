@@ -9,6 +9,7 @@ import { z } from "zod";
 import LogoutPage from "./pages/logout/logout.tsx";
 import SettingPage from "./pages/setting/setting.tsx";
 import { BACKEND_URL } from "./main.tsx";
+import LeftoversPage from "./pages/leftovers/leftovers.tsx";
 
 // biome-ignore lint/security/noGlobalEval: <explanation>
 const SENSOR_INTERVAL = eval(import.meta.env.VITE_SENSOR_INTERVAL);
@@ -120,6 +121,7 @@ export const PageRoot = () => {
             }
           />
           <Route path="attend" element={<AttendPage />} />
+          <Route path="leftovers" element={<LeftoversPage />} />
         </Route>
       </Routes>
     </BrowserRouter>
