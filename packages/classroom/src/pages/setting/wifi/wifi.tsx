@@ -4,7 +4,7 @@ import { get } from "@ecowatch/utils";
 import { useEffect, useMemo, useState } from "react";
 import { z } from "zod";
 import { useNavigate } from "react-router-dom";
-import { LinkButtonBlue, LinkButtonWhite } from "@/components/linkButton";
+import { LinkButtonBlue } from "@/components/linkButton";
 
 const schemaWifiInfo = z.object({
   ssid: z.string(),
