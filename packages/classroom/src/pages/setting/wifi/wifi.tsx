@@ -4,6 +4,7 @@ import { get } from "@ecowatch/utils";
 import { useEffect, useMemo, useState } from "react";
 import { z } from "zod";
 import { useNavigate } from "react-router-dom";
+import { LinkButtonBlue, LinkButtonWhite } from "@/components/linkButton";
 
 const schemaWifiInfo = z.object({
   ssid: z.string(),
@@ -89,6 +90,9 @@ const WifiPage = () => {
         <Submit onClick={submit} disabled={!ssid || !password}>
           接続
         </Submit>
+        <div className={css.back_button_container}>
+          <LinkButtonBlue href="/" text="戻る" />
+        </div>
       </div>
     </div>
   );

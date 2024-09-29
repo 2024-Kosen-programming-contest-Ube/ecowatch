@@ -19,5 +19,11 @@ export const input_container = style({
   rowGap: "24px",
   width: "360px",
   margin: "auto",
-  marginTop: "100px",
+  marginTop: "50px",
+});
+
+export const back_button_container = style({
+  width: "210px",
+  margin: "auto",
+  marginTop: "20px",
 });
