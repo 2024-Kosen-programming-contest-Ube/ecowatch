@@ -7,6 +7,7 @@ export const theme = createGlobalTheme(":root", {
     green: "#9bfc6e",
     yellow: "#f6fa5c",
     white: "#ffffff",
+    gray: "#8a8a8a",
   },
   window: {
     width: "800px",

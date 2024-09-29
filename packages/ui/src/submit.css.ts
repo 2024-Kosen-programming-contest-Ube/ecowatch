@@ -16,4 +16,9 @@ export const submit = style({
   fontWeight: theme.font.semibold,
   fontSize: "20px",
   boxSizing: "border-box",
+
+  ":disabled": {
+    borderColor: theme.color.gray,
+    color: theme.color.gray,
+  },
 });
