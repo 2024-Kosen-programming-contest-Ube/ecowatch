@@ -26,6 +26,8 @@ export const header = style({
 
 export const main_container = style({
   display: "flex",
+  width: "100%",
+  justifyContent: "space-between",
 });
 
 export const left_container = style({});
@@ -63,10 +65,7 @@ export const diaplay_prefix = style({
 
 export const button_container = style({
   display: "grid",
-  // width: "212px",
-  // margin: "auto",
   marginTop: "8px",
-  marginLeft: "16px",
   gridTemplateColumns: "repeat(3, 1fr)",
   gridTemplateRows: "repeat(4, 1fr)",
   columnGap: "8px",
