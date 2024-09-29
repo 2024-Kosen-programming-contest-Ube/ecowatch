@@ -1,22 +1,16 @@
-import { startTransition, Suspense, useState } from "react";
+import { Suspense } from "react";
 import * as css from "./attend.css";
 import { useNavigate } from "react-router-dom";
 import { useDayStatus } from "@/hooks/hookDayStatus";
 import { postJson } from "@ecowatch/utils";
+import { Numpad } from "@/components/numpad";
 
 function AttendInterface() {
   const navigate = useNavigate();
   const previousStatus = useDayStatus();
 
-  const [num, setNum] = useState(() => {
-    if (previousStatus.value?.attend) {
-      return String(previousStatus.value?.attend);
-    }
-    return "";
-  });
-
-  function submit() {
-    postJson("api/classroom/regist_attendance", JSON.stringify({ attendees: Number(num) }))
+  function submit(value: string) {
+    postJson("api/classroom/regist_attendance", JSON.stringify({ attendees: Number(value) }))
       .then(() => {
         navigate("/main");
       })
@@ -25,52 +19,7 @@ function AttendInterface() {
       });
   }
 
-  function updateNum(num: number) {
-    startTransition(() => {
-      setNum((current) => {
-        if (current.length > 3) {
-          return current;
-        }
-        return `${current}${num}`;
-      });
-    });
-  }
-
-  const buttons = (() => {
-    const list = [];
-    for (let i = 1; i <= 9; i++) {
-      list.push(
-        <button onClick={() => updateNum(i)} type="button" className={css.button} key={`${i}_button`}>
-          {i}
-        </button>,
-      );
-    }
-    return list;
-  })();
-
-  return (
-    <div className={css.main_container}>
-      <div className={css.left_container}>
-        <h2 className={css.display_header}>出席確認</h2>
-        <div className={css.diaplay_container}>
-          <div className={css.diaplay}>{num}</div>
-          <p className={css.diaplay_prefix}>人</p>
-        </div>
-      </div>
-      <div className={css.button_container}>
-        {buttons}
-        <button onClick={() => startTransition(() => setNum(""))} type="button" className={css.button}>
-          ×
-        </button>
-        <button onClick={() => updateNum(0)} type="button" className={css.button}>
-          0
-        </button>
-        <button onClick={() => submit()} type="button" className={css.button}>
-          ok
-        </button>
-      </div>
-    </div>
-  );
+  return <Numpad displayHeader="出席確認" diaplayPrefix="人" submit={submit} initialValue={previousStatus.value?.attend ?? undefined} />;
 }
 
 function AttendPage() {
