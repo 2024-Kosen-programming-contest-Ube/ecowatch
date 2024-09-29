@@ -106,7 +106,6 @@ export function useWeather(): [string | null, string | null] {
   }, []);
 
   const getLocation = useCallback(() => {
-    console.log(import.meta.env.VITE_USE_GEOLOCATION_API);
     if (import.meta.env.VITE_USE_GEOLOCATION_API === "true") {
       navigator.geolocation.getCurrentPosition(successGeolocation, errorGeolocation);
     } else {
