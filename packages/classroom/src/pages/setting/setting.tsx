@@ -9,6 +9,7 @@ const SettingPage = () => {
       <div className={css.top_container}></div>
       <div className={css.button_container}>
         <LinkButtonBlue href="/logout" text="ログアウト" />
+        <LinkButtonBlue href="/setting/wifi" text="Wifi設定" />
         <LinkButtonBlue href="/" text="戻る" />
       </div>
     </div>

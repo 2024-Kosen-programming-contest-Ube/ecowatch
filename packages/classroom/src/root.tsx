@@ -10,6 +10,7 @@ import LogoutPage from "./pages/logout/logout.tsx";
 import SettingPage from "./pages/setting/setting.tsx";
 import { BACKEND_URL } from "./main.tsx";
 import LeftoversPage from "./pages/leftovers/leftovers.tsx";
+import WifiPage from "./pages/setting/wifi/wifi.tsx";
 
 // biome-ignore lint/security/noGlobalEval: <explanation>
 const SENSOR_INTERVAL = eval(import.meta.env.VITE_SENSOR_INTERVAL);
@@ -109,6 +110,7 @@ export const PageRoot = () => {
           <Route path="login" element={<LoginPage />} />
           <Route path="logout" element={<LogoutPage />} />
           <Route path="setting" element={<SettingPage />} />
+          <Route path="setting/wifi" element={<WifiPage />} />
           <Route
             path="main"
             element={
