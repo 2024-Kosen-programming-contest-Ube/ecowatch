@@ -90,6 +90,7 @@ function LoginPage() {
           navigate("/main");
         } else {
           console.error(res.statusText);
+          alert("ログインに失敗しました");
         }
       })
       .catch((err) => {
@@ -105,7 +106,9 @@ function LoginPage() {
         {inputSelectGrade}
         {inputSelectName}
         {inputPassword}
-        <Submit onClick={submit}>ログイン</Submit>
+        <Submit onClick={submit} disabled={!password}>
+          ログイン
+        </Submit>
       </div>
     </div>
   );
