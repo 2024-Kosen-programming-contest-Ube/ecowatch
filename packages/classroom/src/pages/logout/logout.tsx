@@ -32,7 +32,7 @@ const LogoutPage = () => {
         <>
           <p>ログアウトしました</p>
 
-          <Link to="/teacher/login">
+          <Link to="/login">
             <p>ログイン</p>
           </Link>
         </>
