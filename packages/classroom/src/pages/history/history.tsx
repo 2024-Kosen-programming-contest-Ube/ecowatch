@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import * as css from "./history.css";
 import { get } from "@ecowatch/utils";
 import { BACKEND_URL } from "@/main";
@@ -13,7 +13,7 @@ type ResponseStatusHistory = {
   } | null;
 };
 
-type StatusHistory = ({ date: Date; point: number } | null)[];
+type StatusHistory = { date: Date; point: number | null }[];
 
 const POINT_STEP = 500;
 
@@ -44,6 +44,9 @@ const drawNode = (ctx: CanvasRenderingContext2D, x: number, y: number) => {
   ctx.fill();
 };
 
+const CANVAS_WIDTH = 640;
+const CANVAS_HEIGHT = 300;
+const CANVAS_PADDING = 20;
 const GRAPH_HEIGHT = 280;
 
 type NodePoint = { x: number; y: number };
@@ -53,22 +56,30 @@ const drawGraph = (canvas: HTMLCanvasElement, history: StatusHistory) => {
   if (!ctx || history.length === 0) {
     return;
   }
-  canvas.width = 640;
-  canvas.height = 300;
-  const PADDING = 10;
-  const X_GAP = (canvas.width - PADDING * 2) / history.length;
+  canvas.width = CANVAS_WIDTH;
+  canvas.height = CANVAS_HEIGHT;
+  const X_GAP = (CANVAS_WIDTH - CANVAS_PADDING * 2) / (history.length - 1);
   const amountMultiplier = calcAmountMultiplier(history);
-  console.log("canvas", canvas.width, canvas.height);
+  console.log("canvas", CANVAS_WIDTH, CANVAS_HEIGHT);
 
   const nodePoints: NodePoint[] = [];
   for (let i = 0; i < history.length; i++) {
     const day = history[i];
-    if (!day) {
+    if (day.point === null) {
       continue;
     }
-    const x = PADDING + X_GAP * i;
+    const x = CANVAS_PADDING + X_GAP * i;
     const y = canvas.height - (day.point / (amountMultiplier * POINT_STEP)) * GRAPH_HEIGHT;
     nodePoints.push({ x, y });
+
+    // For Debug
+    // ctx.strokeStyle = "#32bbf5";
+    // ctx.beginPath();
+    // ctx.moveTo(x, 0);
+    // ctx.lineTo(x, canvas.height);
+    // ctx.closePath();
+    // ctx.lineWidth = 1;
+    // ctx.stroke();
   }
 
   for (let i = 1; i < nodePoints.length; i++) {
@@ -122,7 +133,7 @@ const HistoryPage = () => {
               historyFull.push({ date: targetDate, point: history[dateStr].point });
             } else {
               // historyFull[dateStr] = null;
-              historyFull.push(null);
+              historyFull.push({ date: targetDate, point: null });
             }
           }
           setHistory(historyFull);
@@ -139,6 +150,7 @@ const HistoryPage = () => {
   }, [history]);
 
   const amountMultiplier = calcAmountMultiplier(history);
+
   const leftPrefixes: JSX.Element[] = [];
   for (let i = amountMultiplier; i >= 0; i--) {
     const e = (
@@ -149,6 +161,23 @@ const HistoryPage = () => {
     leftPrefixes.push(e);
   }
 
+  const DATE_GAP = 7;
+  const bottomPrefixes: JSX.Element[] = [];
+  const bottomPrefixNum = Math.floor((history.length - 1) / DATE_GAP) + 1;
+  const X_NODE_GAP = (CANVAS_WIDTH - CANVAS_PADDING * 2) / (history.length - 1);
+  console.log("d", X_NODE_GAP);
+  for (let i = 0; i < bottomPrefixNum; i++) {
+    const date = history[history.length - 1 - i * DATE_GAP].date;
+    console.log(`${date?.getMonth() + 1}/${date?.getDate()}`);
+    const e = (
+      <p className={css.graph_bottom_prefix} style={{ right: `${CANVAS_PADDING + X_NODE_GAP * i * DATE_GAP}px` }} key={i}>
+        {`${date?.getMonth() + 1}/${date?.getDate()}`}
+      </p>
+    );
+    bottomPrefixes.push(e);
+  }
+  bottomPrefixes.reverse();
+
   return (
     <div className={css.background}>
       <div className={css.header} />
@@ -157,7 +186,7 @@ const HistoryPage = () => {
         <div className={css.graph_left}>{leftPrefixes}</div>
         <div className={css.graph_inner_container}>
           <canvas className={css.graph} ref={canvas} />
-          <div className={css.graph_bottom}></div>
+          <div className={css.graph_bottom}>{bottomPrefixes}</div>
         </div>
       </div>
     </div>

@@ -46,6 +46,18 @@ export const graph_left_prefix = style({
 
 export const graph_bottom = style({
   height: "40px",
+  position: "relative",
+});
+
+export const graph_bottom_prefix = style({
+  position: "absolute",
+  margin: "0",
+  fontWeight: theme.font.semibold,
+  fontSize: "20px",
+  color: theme.color.blue,
+  textAlign: "center",
+  boxSizing: "border-box",
+  transform: "translate(50%, 0)",
 });
 
 export const graph = style({
