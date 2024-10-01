@@ -61,7 +61,6 @@ const drawGraph = (canvas: HTMLCanvasElement, history: StatusHistory) => {
   canvas.height = CANVAS_HEIGHT;
   const X_GAP = (CANVAS_WIDTH - CANVAS_PADDING * 2) / (history.length - 1);
   const amountMultiplier = calcAmountMultiplier(history);
-  console.log("canvas", CANVAS_WIDTH, CANVAS_HEIGHT);
 
   const nodePoints: NodePoint[] = [];
   for (let i = 0; i < history.length; i++) {
@@ -138,7 +137,6 @@ const HistoryPage = () => {
             }
           }
           setHistory(historyFull);
-          console.log(historyFull);
         }
       });
     });
