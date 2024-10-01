@@ -3,7 +3,7 @@ import { type FetchedData, get, type Resolve, resolver } from "@ecowatch/utils";
 import { useEffect } from "react";
 import { z } from "zod";
 
-const schemaDayStatus = z.object({
+export const schemaDayStatus = z.object({
   class_id: z.string(),
   point: z.number(),
   attend: z.number().nullable(),

@@ -26,6 +26,7 @@ function MenuPage() {
             <MainLoginButton />
           </Suspense>
         </ErrorBoundary>
+        <LinkButtonWhite href="/history" text="これまでのデータ" />
         <LinkButtonWhite href="/setting" text="設定" />
       </div>
     </div>
