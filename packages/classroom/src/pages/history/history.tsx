@@ -149,34 +149,37 @@ const HistoryPage = () => {
     }
   }, [history]);
 
-  const amountMultiplier = calcAmountMultiplier(history);
+  const leftPrefixes = useMemo(() => {
+    const amountMultiplier = calcAmountMultiplier(history);
+    const leftPrefixes: JSX.Element[] = [];
+    for (let i = amountMultiplier; i >= 0; i--) {
+      const e = (
+        <p className={css.graph_left_prefix} style={{ bottom: `${(GRAPH_HEIGHT / amountMultiplier) * i + 35}px` }} key={i}>
+          {500 * i}
+        </p>
+      );
+      leftPrefixes.push(e);
+    }
+    return leftPrefixes;
+  }, [history]);
 
-  const leftPrefixes: JSX.Element[] = [];
-  for (let i = amountMultiplier; i >= 0; i--) {
-    const e = (
-      <p className={css.graph_left_prefix} style={{ bottom: `${(GRAPH_HEIGHT / amountMultiplier) * i + 35}px` }} key={i}>
-        {500 * i}
-      </p>
-    );
-    leftPrefixes.push(e);
-  }
+  const bottomPrefixes = useMemo(() => {
+    const DATE_GAP = 7;
+    const bottomPrefixes: JSX.Element[] = [];
+    const bottomPrefixNum = Math.floor((history.length - 1) / DATE_GAP) + 1;
+    const X_NODE_GAP = (CANVAS_WIDTH - CANVAS_PADDING * 2) / (history.length - 1);
 
-  const DATE_GAP = 7;
-  const bottomPrefixes: JSX.Element[] = [];
-  const bottomPrefixNum = Math.floor((history.length - 1) / DATE_GAP) + 1;
-  const X_NODE_GAP = (CANVAS_WIDTH - CANVAS_PADDING * 2) / (history.length - 1);
-  console.log("d", X_NODE_GAP);
-  for (let i = 0; i < bottomPrefixNum; i++) {
-    const date = history[history.length - 1 - i * DATE_GAP].date;
-    console.log(`${date?.getMonth() + 1}/${date?.getDate()}`);
-    const e = (
-      <p className={css.graph_bottom_prefix} style={{ right: `${CANVAS_PADDING + X_NODE_GAP * i * DATE_GAP}px` }} key={i}>
-        {`${date?.getMonth() + 1}/${date?.getDate()}`}
-      </p>
-    );
-    bottomPrefixes.push(e);
-  }
-  bottomPrefixes.reverse();
+    for (let i = 0; i < bottomPrefixNum; i++) {
+      const date = history[history.length - 1 - i * DATE_GAP].date;
+      const e = (
+        <p className={css.graph_bottom_prefix} style={{ right: `${CANVAS_PADDING + X_NODE_GAP * i * DATE_GAP}px` }} key={i}>
+          {`${date?.getMonth() + 1}/${date?.getDate()}`}
+        </p>
+      );
+      bottomPrefixes.push(e);
+    }
+    return bottomPrefixes.reverse();
+  }, [history]);
 
   return (
     <div className={css.background}>
