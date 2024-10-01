@@ -67,3 +67,9 @@ export const graph = style({
   borderBottom: "3px solid",
   borderColor: theme.color.blue,
 });
+
+export const back_button = style({
+  width: "100px",
+  scale: 0.7,
+  marginTop: "-10px",
+});

@@ -4,6 +4,7 @@ import { get } from "@ecowatch/utils";
 import { BACKEND_URL } from "@/main";
 import { schemaDayStatus } from "@/hooks/hookDayStatus";
 import { z } from "zod";
+import { LinkButtonBlue } from "@/components/linkButton";
 
 const schemaDayStatusList = z.array(schemaDayStatus);
 
@@ -191,6 +192,9 @@ const HistoryPage = () => {
           <canvas className={css.graph} ref={canvas} />
           <div className={css.graph_bottom}>{bottomPrefixes}</div>
         </div>
+      </div>
+      <div className={css.back_button}>
+        <LinkButtonBlue href="/" text="戻る" />
       </div>
     </div>
   );
