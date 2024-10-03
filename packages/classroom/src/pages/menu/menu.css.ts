@@ -4,6 +4,7 @@ import { style } from "@vanilla-extract/css";
 export const container = style({
   width: theme.window.width,
   height: theme.window.height,
+  overflow: "hidden",
   backgroundColor: theme.color.blue,
 });
 
@@ -17,4 +18,5 @@ export const button_container = style({
   gap: "18px",
   width: "212px",
   margin: "auto",
+  marginTop: "88px",
 });

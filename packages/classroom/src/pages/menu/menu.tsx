@@ -19,7 +19,6 @@ function MenuPage() {
 
   return (
     <div className={css.container}>
-      <div className={css.top_container}></div>
       <div className={css.button_container}>
         <ErrorBoundary fallback={<LinkButtonWhite href="/" text="error" />}>
           <Suspense fallback={<LinkButtonWhite href="/" text="" />}>
