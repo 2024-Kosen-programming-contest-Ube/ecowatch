@@ -201,4 +201,5 @@ export const hint = style({
   borderTop: "2px solid",
   borderBottom: "2px solid",
   borderColor: theme.color.blue,
+  whiteSpace: "nowrap",
 });
