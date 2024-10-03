@@ -30,7 +30,9 @@ export const main_container = style({
   justifyContent: "space-between",
 });
 
-export const left_container = style({});
+export const left_container = style({
+  position: "relative",
+});
 
 export const display_header = style({
   margin: "0px",
@@ -61,6 +63,12 @@ export const diaplay_prefix = style({
   fontWeight: theme.font.semibold,
   fontSize: "40px",
   color: theme.color.white,
+});
+
+export const back_button_container = style({
+  width: "160px",
+  position: "absolute",
+  bottom: 0,
 });
 
 export const button_container = style({

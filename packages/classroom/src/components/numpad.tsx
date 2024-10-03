@@ -1,5 +1,6 @@
 import { startTransition, useState } from "react";
 import * as css from "./numpad.css";
+import { LinkButtonWhite } from "./linkButton";
 
 export const Numpad = ({
   initialValue,
@@ -45,6 +46,9 @@ export const Numpad = ({
         <div className={css.diaplay_container}>
           <div className={css.diaplay}>{num}</div>
           <p className={css.diaplay_prefix}>{diaplayPrefix}</p>
+        </div>
+        <div className={css.back_button_container}>
+          <LinkButtonWhite href="/main" text="戻る" />
         </div>
       </div>
       <div className={css.button_container}>
