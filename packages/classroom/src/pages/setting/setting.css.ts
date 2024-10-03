@@ -7,12 +7,10 @@ export const container = style({
   backgroundColor: theme.color.white,
 });
 
-export const top_container = style({
-  width: "100%",
-  height: "88px",
-});
-
 export const button_container = style({
+  display: "grid",
+  gap: "18px",
   width: "212px",
   margin: "auto",
+  marginTop: "24px",
 });

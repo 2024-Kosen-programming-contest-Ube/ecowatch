@@ -13,6 +13,8 @@ export const top_container = style({
 });
 
 export const button_container = style({
+  display: "grid",
+  gap: "18px",
   width: "212px",
   margin: "auto",
 });

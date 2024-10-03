@@ -7,7 +7,7 @@ const button_base = style({
   backgroundColor: "transparent",
   border: "2px solid",
   borderRadius: "11px",
-  marginBottom: "17px",
+  // marginBottom: "17px",
   fontSize: "20px",
   fontWeight: theme.font.semibold,
 });
