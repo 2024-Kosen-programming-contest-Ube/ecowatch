@@ -8,7 +8,7 @@ const PointPage = () => {
   const [point, setPoint] = useState(0);
 
   useEffect(() => {
-    get(`${BACKEND_URL}/classroom/point`).then((res) => {
+    get(`${BACKEND_URL}/student/point`).then((res) => {
       if (!res.ok) {
         console.error(res.statusText);
         if (res.status === 401) {
