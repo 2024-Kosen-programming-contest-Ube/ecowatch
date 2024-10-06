@@ -12,7 +12,7 @@ const PointPage = () => {
       if (!res.ok) {
         console.error(res.statusText);
         if (res.status === 401) {
-          window.location.href = "/teacher/login";
+          window.location.href = "/student/login";
         }
         return;
       }
