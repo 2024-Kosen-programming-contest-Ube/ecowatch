@@ -14,6 +14,7 @@ export const header = style({
 });
 
 export const point = style({
+  height: "160px",
   margin: "0",
   fontWeight: theme.font.medium,
   fontSize: "160px",

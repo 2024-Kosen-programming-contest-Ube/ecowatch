@@ -53,6 +53,7 @@ export const diaplay = style({
   backgroundColor: theme.color.white,
   fontWeight: theme.font.semibold,
   fontSize: "40px",
+  lineHeight: "64px",
   textAlign: "center",
 });
 
