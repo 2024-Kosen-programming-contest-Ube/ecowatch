@@ -12,6 +12,7 @@ import { BACKEND_URL } from "./main.tsx";
 import LeftoversPage from "./pages/leftovers/leftovers.tsx";
 import WifiPage from "./pages/setting/wifi/wifi.tsx";
 import HistoryPage from "./pages/history/history.tsx";
+import DemoSettingPage from "./pages/setting/demo.tsx";
 
 // biome-ignore lint/security/noGlobalEval: <explanation>
 const SENSOR_INTERVAL = eval(import.meta.env.VITE_SENSOR_INTERVAL);
@@ -71,6 +72,7 @@ export const PageRoot = () => {
         const parsed = schemaSensor.safeParse(data);
         if (parsed.success) {
           const sensor: Sensor = parsed.data;
+
           setSensor(sensor);
         } else {
           console.error(parsed.error);
@@ -112,6 +114,7 @@ export const PageRoot = () => {
           <Route path="logout" element={<LogoutPage />} />
           <Route path="setting" element={<SettingPage />} />
           <Route path="setting/wifi" element={<WifiPage />} />
+          <Route path="setting/demo" element={<DemoSettingPage />} />
           <Route path="history" element={<HistoryPage />} />
           <Route
             path="main"
