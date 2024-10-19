@@ -50,6 +50,15 @@ export const point = style({
   textAlign: "right",
 });
 
+export const point4 = style({
+  fontSize: "160px",
+  lineHeight: "200px",
+  fontWeight: theme.font.medium,
+  margin: "0px",
+  marginTop: "-20px",
+  textAlign: "right",
+});
+
 export const button_container = style({
   display: "flex",
   marginLeft: "-30px",
