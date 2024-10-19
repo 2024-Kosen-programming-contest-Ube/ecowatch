@@ -114,6 +114,7 @@ export const PageRoot = () => {
           <Route path="logout" element={<LogoutPage />} />
           <Route path="setting" element={<SettingPage />} />
           <Route path="setting/wifi" element={<WifiPage />} />
+          <Route path="setting/demo" element={<DemoSettingPage />} />
           <Route path="history" element={<HistoryPage />} />
           <Route
             path="main"
